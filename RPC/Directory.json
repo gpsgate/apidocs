@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "GpsGate Directory Service API is to authenticate a user into an application via username and password.\n* RPC operations are all made to the base endpoint specifying the RPC method in the request body as indicated in the invidual method documentations below\n* 200 status code responses indicate the immediate RPC response.",
+    "version": "v1",
+    "title": "GpsGate Directory Service API",
+    "contact": {
+      "email": "support@gpsgate.com"
+    }
+  },
+  "basePath": "/comGpsGate/rpc/Directory",
+  "tags": [
+    {
+      "name": "login",
+      "description": "Login to an application"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "Login to an application",
+        "description": "Login to an application with username and password",
+        "operationId": "login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Context"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Login": {
+      "type": "object",
+      "required": [
+        "iApplicationID",
+        "strUserName",
+        "strPassword",
+        "bStaySignedIn"
+      ],
+      "properties": {
+        "iApplicationID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "strUserName": {
+          "type": "string"
+        },
+        "strPassword": {
+          "type": "string"
+        },
+        "bStaySignedIn": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Context": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "$ref": "#/definitions/Session"
+        },
+        "server": {
+          "$ref": "#/definitions/ServerInfo"
+        }
+      }
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      }
+    },
+    "ServerInfo": {
+      "type": "object",
+      "properties": {
+        "applicationBasePath": {
+          "type": "string"
+        },
+        "rootPath": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
