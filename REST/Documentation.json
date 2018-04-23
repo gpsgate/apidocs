@@ -734,7 +734,7 @@
             ],
             "summary":"Get users within a tag",
             "description":"",
-            "operationId":"GetUsers",
+            "operationId":"GetUsersByTags",
             "parameters":[
                {
                   "name":"applicationid:int",
@@ -1837,9 +1837,5 @@
          "name":"EventRules",
          "description":"EventRule Operations"
       }
-   ],
-   "externalDocs":{
-      "Description":"GpsGate API blog post",
-      "Url":"http://www.gpsgate.com"
-   }
+   ]
 }
