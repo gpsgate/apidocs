@@ -1,0 +1,1262 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "GpsGate Dispatch Push API is an RPC/SSE based, event-driven web service that allows developers to design their own solutions using the Dispatch plugin for GpsGate in a performant and scalable way.\n\n* Applications should subscribe to SSE push notifications from the /comGpsGate/sse/subscribe/Dispatch_Stream endpoint at startup.\n* They should then subscribe to the Dispatch events that they are interested in receiving using one of the subscribe RPC methods. All activity on Jobs or Routes will then be sent to subscribed clients.\n* RPC operations are all made to the base endpoint specifying the RPC method in the request body as indicated in the invidual method documentations below\n* 200 status code responses indicate the immediate RPC response.\n* 210 status code responses indicate the response that will be sent via SSE push when the request is fulfilled.",
+    "version": "v1",
+    "title": "GpsGate Dispatch Push API",
+    "contact": {
+      "email": "support@gpsgate.com"
+    }
+  },
+  "basePath": "/comGpsGate/rpc/Dispatch/v.1",
+  "tags": [
+    {
+      "name": "subscribe",
+      "description": "Subscribe to Dispatch events for your SSE stream"
+    },
+    {
+      "name": "querying",
+      "description": "Get information about the state of Jobs or Routes"
+    },
+    {
+      "name": "jobs",
+      "description": "Operations on jobs"
+    },
+    {
+      "name": "routes",
+      "description": "Operations on routes"
+    },
+    {
+      "name": "custom fields",
+      "description": "Operations for custom fields"
+    },
+    {
+      "name": "fcm",
+      "description": "Operations for Firebase cloud messaging token management"
+    }
+  ],
+  "paths": {
+    "/subscribe": {
+      "post": {
+        "tags": [
+          "subscribe"
+        ],
+        "summary": "Subscribe to Dispatch events",
+        "description": "Subscribe to all authorised events for the given time range",
+        "operationId": "subscribe",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/SubscribeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/Subscribed"
+            }
+          }
+        }
+      }
+    },
+    "/subscribeToUser": {
+      "post": {
+        "tags": [
+          "subscribe"
+        ],
+        "summary": "Subscribe to Dispatch events for a worker",
+        "description": "Subscribe to all authorised events for the given time range for the given worker",
+        "operationId": "subscribeToUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/SubscribeToUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/Subscribed"
+            }
+          }
+        }
+      }
+    },
+    "/subscribeMetadata": {
+      "post": {
+        "tags": [
+          "subscribe"
+        ],
+        "summary": "Subscribe to Dispatch metadata",
+        "description": "Subscribe to all authorised meta for the given time range and worker",
+        "operationId": "subscribeMetadata",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/SubscribeMetadataRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/Subscribed"
+            }
+          }
+        }
+      }
+    },
+    "/unsubscribeToOne": {
+      "post": {
+        "tags": [
+          "subscribe"
+        ],
+        "summary": "Unsubscribe from Dispatch data",
+        "description": "Unsubscribe from a specific subscription id",
+        "operationId": "unsubscribeToOne",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/UnsubscribeToOneRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/Unsubscribed"
+            }
+          }
+        }
+      }
+    },
+    "/queryJob": {
+      "get": {
+        "tags": [
+          "querying"
+        ],
+        "summary": "Query the details of a job",
+        "description": "Get the details of a job with a specific job id sent to a subscription",
+        "operationId": "queryJobGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "query",
+            "description": "GpsGate application id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "jobId",
+            "in": "query",
+            "description": "Job id to query",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "responseSubscriptionId",
+            "in": "query",
+            "description": "The id of the push subscription to receive job information",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "querying"
+        ],
+        "summary": "Query the details of a job",
+        "description": "Get the details of a job with a specific id sent to a subscription",
+        "operationId": "queryJobPost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/QueryJobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          }
+        }
+      }
+    },
+    "/queryRoute": {
+      "get": {
+        "tags": [
+          "querying"
+        ],
+        "summary": "Query the details of a route",
+        "description": "Get the details of a route with a specific id sent to a subscription",
+        "operationId": "queryRouteGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "query",
+            "description": "GpsGate application id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "routeId",
+            "in": "query",
+            "description": "Route id to query",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "responseSubscriptionId",
+            "in": "query",
+            "description": "The id of the push subscription to receive route information",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/RouteResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "querying"
+        ],
+        "summary": "Query the details of a route",
+        "description": "Get the details of a route with a specific route id sent to a subscription",
+        "operationId": "queryRoute",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/QueryRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/RouteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/updateJob": {
+      "post": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Update a job",
+        "description": "Update the details of a job",
+        "operationId": "updateJob",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/UpdateJobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          }
+        }
+      }
+    },
+    "/updateRoute": {
+      "post": {
+        "tags": [
+          "routes"
+        ],
+        "summary": "Update a route",
+        "description": "Update the details of a route and its child jobs",
+        "operationId": "updateRoute",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/UpdateRouteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "string",
+              "example": "1234567890",
+              "description": "Unique request identifier"
+            }
+          },
+          "210": {
+            "description": "Pushed response",
+            "schema": {
+              "$ref": "#/definitions/RouteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/readCustomFieldByApplicationId": {
+      "get": {
+        "tags": [
+          "custom fields"
+        ],
+        "summary": "Read custom fields for application",
+        "description": "Get a collection of all the custom fields for a given application id and custom field namespace (Job, Route)",
+        "operationId": "readCustomFieldByApplicationIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "query",
+            "description": "GpsGate application id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cfNamespace",
+            "in": "query",
+            "description": "The namespace to return custom fields for",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/CustomFieldResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "custom fields"
+        ],
+        "summary": "Read custom fields for application",
+        "description": "Get a collection of all the custom fields for a given application id and custom field namespace (Job, Route)",
+        "operationId": "readCustomFieldByApplicationIdPost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/ReadCustomFieldRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/CustomFieldResponse"
+            }
+          }
+        }
+      }
+    },
+    "/updateFCMToken": {
+      "post": {
+        "tags": [
+          "fcm"
+        ],
+        "summary": "Update FCM token and device type",
+        "description": "Update the FCM token and device type for the currently logged in user",
+        "operationId": "updateFCMToken",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/UpdateFCMTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "boolean",
+              "description": "If the operation was successful or not"
+            }
+          }
+        }
+      }
+    },
+    "/removeFCMToken": {
+      "post": {
+        "tags": [
+          "fcm"
+        ],
+        "summary": "Remove FCM token",
+        "description": "Remove the FCM token for the currently logged in user",
+        "operationId": "removeFCMToken",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "schema": {
+              "$ref": "#/definitions/RemoveFCMTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "boolean",
+              "description": "If the operation was successful or not"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Job": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applicationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jobState": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string"
+        },
+        "startLocation": {
+          "$ref": "#/definitions/Location"
+        },
+        "assignedWorkerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "scheduledTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "completedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "assignedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "activatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "routeID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "creatorId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "commentItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommentItem"
+          }
+        },
+        "jobPoiId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "nullable"
+        },
+        "jobDuration": {
+          "type": "integer",
+          "format": "int32",
+          "description": "nullable"
+        },
+        "customFields": {
+          "type": "string"
+        }
+      }
+    },
+    "Route": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applicationID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "colour": {
+          "type": "string"
+        },
+        "showStateColours": {
+          "type": "boolean",
+          "default": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasSchedule": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "schedule": {
+          "$ref": "#/definitions/RouteSchedule"
+        },
+        "propagateScheduleChanges": {
+          "type": "boolean",
+          "default": false,
+          "description": "This property dictates whether changes to this route object will apply the changes to all other routes in the same schedule"
+        },
+        "scheduledDispatchingDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "nullable"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This is a read-only property that is set by the server and ignored when uploaded by clients"
+        },
+        "customFields": {
+          "type": "string"
+        }
+      }
+    },
+    "CustomField": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cfType": {
+          "type": "integer",
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "cfNamespace": {
+          "type": "string",
+          "enum": [
+            "Job",
+            "Route"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "applicationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "CommentItem": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "integer",
+          "format": "int32",
+          "description": "id of comment maker"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name of user"
+        },
+        "commentText": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "postalCodeNumber": {
+          "type": "string"
+        },
+        "streetBox": {
+          "type": "string"
+        },
+        "streetName": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "administrativeAreaName": {
+          "type": "string"
+        },
+        "subAdministrativeAreaName": {
+          "type": "string"
+        },
+        "pointOfInterest": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "categoryID": {
+          "type": "integer"
+        }
+      }
+    },
+    "Position": {
+      "type": "object",
+      "required": [
+        "longitude",
+        "latitude"
+      ],
+      "properties": {
+        "is3D": {
+          "type": "boolean"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "altitude": {
+          "type": "number"
+        }
+      }
+    },
+    "RouteSchedule": {
+      "type": "object",
+      "required": [
+        "scheduleId"
+      ],
+      "properties": {
+        "scheduleId": {
+          "type": "string",
+          "format": "int64",
+          "description": "A 0 id will create a new schedule"
+        },
+        "monday": {
+          "type": "boolean",
+          "default": false
+        },
+        "tuesday": {
+          "type": "boolean",
+          "default": false
+        },
+        "wednesday": {
+          "type": "boolean",
+          "default": false
+        },
+        "thursday": {
+          "type": "boolean",
+          "default": false
+        },
+        "friday": {
+          "type": "boolean",
+          "default": false
+        },
+        "saturday": {
+          "type": "boolean",
+          "default": false
+        },
+        "sunday": {
+          "type": "boolean",
+          "default": false
+        },
+        "assignWorker": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Subscribed": {
+      "type": "object",
+      "properties": {
+        "subscriptionId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Unsubscribed": {
+      "type": "object",
+      "properties": {
+        "subscriptionId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SubscribeRequest": {
+      "type": "object",
+      "required": [
+        "startTime",
+        "endTime",
+        "requestedSubscriptionId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestedSubscriptionId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "includeUnscheduled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "SubscribeToUserRequest": {
+      "type": "object",
+      "required": [
+        "startTime",
+        "endTime",
+        "requestedSubscriptionId",
+        "workerId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestedSubscriptionId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "includeUnscheduled": {
+          "type": "boolean",
+          "default": false
+        },
+        "workerId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SubscribeMetadataRequest": {
+      "type": "object",
+      "required": [
+        "startTime",
+        "endTime",
+        "workerId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "workerId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UnsubscribeToOneRequest": {
+      "type": "object",
+      "required": [
+        "subscriptionId"
+      ],
+      "properties": {
+        "subscriptionId": {
+          "type": "string"
+        }
+      }
+    },
+    "QueryJobRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "jobId",
+        "responseSubscriptionId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jobId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "responseSubscriptionId": {
+          "type": "string",
+          "description": "The subscription id that you want to receive the queried job response from"
+        }
+      }
+    },
+    "JobResponse": {
+      "type": "object",
+      "required": [
+        "dispatchJob",
+        "requestId",
+        "action"
+      ],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "action": {
+          "type": "string"
+        },
+        "dispatchJob": {
+          "$ref": "#/definitions/Job"
+        }
+      }
+    },
+    "UpdateJobRequest": {
+      "type": "object",
+      "required": [
+        "appid",
+        "job"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "job": {
+          "$ref": "#/definitions/Job"
+        }
+      }
+    },
+    "QueryRouteRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "routeId",
+        "responseSubscriptionId"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "routeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "responseSubscriptionId": {
+          "type": "string",
+          "description": "The subscription id that you want to receive the queried route response from"
+        }
+      }
+    },
+    "RouteResponse": {
+      "type": "object",
+      "required": [
+        "dispatchRoute",
+        "requestId",
+        "action"
+      ],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "action": {
+          "type": "string"
+        },
+        "dispatchRoute": {
+          "$ref": "#/definitions/Route"
+        }
+      }
+    },
+    "UpdateRouteRequest": {
+      "type": "object",
+      "required": [
+        "appid",
+        "route",
+        "includedJobs"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "route": {
+          "$ref": "#/definitions/Route"
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Job"
+          }
+        }
+      }
+    },
+    "ReadCustomFieldRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "cfNamespace"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cfNamespace": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CustomFieldResponse": {
+      "type": "object",
+      "required": [
+        "customFields",
+        "requestId",
+        "action"
+      ],
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "action": {
+          "type": "string"
+        },
+        "customFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "UpdateFCMTokenRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "token",
+        "deviceType"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "token": {
+          "type": "string"
+        },
+        "deviceType": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "RemoveFCMTokenRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "token"
+      ],
+      "properties": {
+        "appId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
