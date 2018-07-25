@@ -303,7 +303,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get the latest value of each message field (device status signal) sent to server.",
+        "summary": "Returns the latest position and variables for a user",
         "description": "",
         "operationId": "GetStatus",
         "parameters": [
@@ -368,7 +368,7 @@
 			"tags": [
 				"Application"
 			],
-			"summary": "Get the latest value of each message field (device status signal) sent to server for each user.",
+			"summary": "Returns the latest position and variables for users within an application",
 			"description": "",
 			"operationId": "GetUsersStatus",
 			"parameters": [
