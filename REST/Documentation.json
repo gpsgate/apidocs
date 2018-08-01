@@ -2830,7 +2830,7 @@
         ],
         "summary": "Get Geofences within a Geofence Group",
         "description": "",
-        "operationId": "GetGeofences",
+        "operationId": "GeofencesWithinGeofenceGroup",
         "parameters": [{
             "name": "applicationid:int",
             "in": "path",
@@ -2966,7 +2966,7 @@
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/geofencegroups/{geofencegroupid:int}/geofences/{geofenceid:long}": {
+    "/applications/{applicationid:int}/geofencegroups/{geofencegroupid:int}/geofences/{geofenceid:int}": {
       "delete": {
         "tags": [
           "GeofenceGroups/Geofence"
