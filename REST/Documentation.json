@@ -3147,12 +3147,6 @@
         "calculatedSpeed": {
           "type": "number"
         },
-        "customFieldsValue": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "description": {
           "type": "string"
         },
@@ -4009,7 +4003,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/CustomFieldModel"
+            "$ref": "#/definitions/JobCustomFieldModel"
           }
         },
         "description": {
@@ -4053,7 +4047,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/CustomFieldModel"
+            "$ref": "#/definitions/JobCustomFieldModel"
           }
         },
         "id": {
@@ -4072,7 +4066,7 @@
       },
       "type": "object"
     },
-    "CustomFieldModel": {
+    "JobCustomFieldModel": {
       "properties": {
         "id": {
           "type": "string"
