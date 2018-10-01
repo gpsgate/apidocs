@@ -782,7 +782,7 @@
           {
             "name": "Date",
             "in": "query",
-            "description": "The date, in Vehicle TrackInfoer application local time, that you want to get the event for. (for example 2017-10-30)",
+            "description": "The date, in Vehicle Tracker application local time, that you want to get the track summaries for. (for example 2017-10-30)",
             "required": true,
             "type": "string",
             "format": "date"
@@ -790,7 +790,7 @@
           {
             "name": "userid:int",
             "in": "path",
-            "description": "The user id for which you want to get the events",
+            "description": "The user id for which you want to get the track summaries",
             "required": true,
             "type": "integer"
           }
@@ -855,7 +855,7 @@
           {
             "name": "Date",
             "in": "query",
-            "description": "The date, in Vehicle Tracker application local time, that you want to get the event for. (for example 2017-10-30)",
+            "description": "The date, in Vehicle Tracker application local time, that you want to get the tracks for. (for example 2017-10-30)",
             "required": true,
             "type": "string",
             "format": "date"
@@ -863,7 +863,7 @@
           {
             "name": "userid:int",
             "in": "path",
-            "description": "The user id for which you want to get the events",
+            "description": "The user id for which you want to get the tracks",
             "required": true,
             "type": "integer"
           }
