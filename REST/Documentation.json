@@ -3459,6 +3459,13 @@
             "description": "Time in minutes when the link should expire",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "maptype",
+            "in": "query",
+            "description": "Which map type to use. Default gmap (Google Maps). Supported Maps: gmap and nativemap (GpsGate native map)",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
