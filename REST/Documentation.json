@@ -1790,7 +1790,7 @@
         ],
         "summary": "Add a Geofence to a Geofence Group",
         "description": "",
-        "operationId": "PostGeofence",
+        "operationId": "PostGeofenceWithinGeofenceGroup",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -1860,7 +1860,7 @@
         ],
         "summary": "Remove a Geofence from a Geofence Group",
         "description": "",
-        "operationId": "DeleteGeofenceByGeofenceId",
+        "operationId": "DeleteGeofenceWithinGeofenceGroupByGeofenceId",
         "parameters": [
           {
             "name": "applicationid:int",
