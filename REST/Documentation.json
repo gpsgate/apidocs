@@ -986,6 +986,20 @@
             "description": "The user id for which you want to get the tracks",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "From",
+            "in": "query",
+            "description": "From timestamp, in Vehicle Tracker application local time (default is 00:00:00) from which you want to get the tracks. (format is MM:HH:SS, for example 17:10:30)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Until",
+            "in": "query",
+            "description": "Until timestamp, in Vehicle Tracker application local time (default is 23:59:59) to which you want to get the tracks. (format is MM:HH:SS, for example 23:10:30)",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
