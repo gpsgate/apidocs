@@ -3887,6 +3887,9 @@
         },
         "surname": {
           "type": "string"
+        },
+        "driverID": {
+          "type": "string"
         }
       },
       "required": [
