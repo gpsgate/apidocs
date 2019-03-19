@@ -913,6 +913,14 @@
             "description": "The user id for which you want to get the track summaries",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "Filtered",
+            "in": "query",
+            "description": "Set this flag if you want to use filtered reader",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -1000,6 +1008,14 @@
             "description": "Until timestamp, in Vehicle Tracker application local time (default is 23:59:59) to which you want to get the tracks. (format is MM:HH:SS, for example 23:10:30)",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "Filtered",
+            "in": "query",
+            "description": "Set this flag if you want to use filtered reader",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
