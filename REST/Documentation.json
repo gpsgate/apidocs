@@ -4166,7 +4166,13 @@
         },
         "userId": {
           "type": "integer"
-        }
+        },
+        "count": {
+          "type": "integer"
+        },
+        "updated": {
+          "type": "string"
+        }		
       },
       "required": [
         "id",
