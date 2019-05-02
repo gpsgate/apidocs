@@ -3708,6 +3708,12 @@
         },
         "type": {
           "type": "string"
+        },
+		"description": {
+          "type": "string"
+        },
+		"unitName": {
+          "type": "string"
         }
       },
       "type": "object"
