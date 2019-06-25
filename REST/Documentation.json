@@ -871,7 +871,7 @@
     "/applications/{applicationid:int}/users/{userid:int}/trackinfos": {
       "get": {
         "tags": [
-          "TrackInfos"
+          "Tracks"
         ],
         "summary": "Return a list of TrackInfos.",
         "description": "",
@@ -1156,7 +1156,7 @@
     "/applications/{applicationid:int}/usertypes": {
       "get": {
         "tags": [
-          "UserTypes"
+          "Users"
         ],
         "summary": "Return a list of UserTypes.",
         "description": "",
@@ -1214,7 +1214,7 @@
     "/applications/{applicationid:int}/usersstatus": {
       "get": {
         "tags": [
-          "Application"
+          "Users"
         ],
         "summary": "Returns the latest position and variables for users within an application",
         "description": "",
@@ -1400,7 +1400,7 @@
         ],
         "summary": "Authorization",
         "description": "This method is used for getting an ApiKey",
-        "operationId": "PostToken",
+        "operationId": "GetAPIToken",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -1660,7 +1660,7 @@
     "/applications/{applicationid:int}/tags/{tagid:int}/users": {
       "get": {
         "tags": [
-          "Tags/Users"
+          "Tags"
         ],
         "summary": "Get users within a tag",
         "description": "",
@@ -1693,7 +1693,7 @@
           {
             "name": "tagid:int",
             "in": "path",
-            "description": "ID of the tag you want to work with.",
+            "description": "Id of the target tag.",
             "required": true,
             "type": "integer"
           }
@@ -1739,7 +1739,7 @@
       },
       "post": {
         "tags": [
-          "Tags/Users"
+          "Tags"
         ],
         "summary": "Add a user to a tag",
         "description": "",
@@ -1755,7 +1755,7 @@
           {
             "name": "tagid:int",
             "in": "path",
-            "description": "ID of the tag you want to work with.",
+            "description": "Id of the target tag.",
             "required": true,
             "type": "integer"
           },
@@ -1809,7 +1809,7 @@
     "/applications/{applicationid:int}/tags/{tagid:int}/users/{userid:long}": {
       "delete": {
         "tags": [
-          "Tags/Users"
+          "Tags"
         ],
         "summary": "Remove a user from a tag",
         "description": "",
@@ -1833,7 +1833,337 @@
           {
             "name": "tagid:int",
             "in": "path",
-            "description": "ID of the tag you want to work with.",
+            "description": "Id of the target tag.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/roles": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get a list of Roles",
+        "description": "",
+        "operationId": "GetRoles",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/RoleModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/roles/{roleid:long}": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get a Role by Id",
+        "description": "",
+        "operationId": "GetRoleByRoleid",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "roleid:long",
+            "in": "path",
+            "description": "Roleid of the Role you want to work with.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/RoleModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/roles/{roleid:int}/users/{userid:long}": {
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Remove a user from a role",
+        "description": "",
+        "operationId": "DeleteUserWithinRoleByUserid",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "roleid:int",
+            "in": "path",
+            "description": "Id of the target role.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:long",
+            "in": "path",
+            "description": "Userid of the User you want to work with.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/batch/applications/{applicationid:int}/roles/{roleid:int}/users": {
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Adds a list of users to the role",
+        "description": "",
+        "operationId": "PostUsersWithinRole",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "roleid:int",
+            "in": "path",
+            "description": "Id of the target role.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "name": "userIds",
+            "description": "IDs of the users which are added to the role.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Remove all users from this role",
+        "description": "",
+        "operationId": "DeleteUsersWithinRole",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "roleid:int",
+            "in": "path",
+            "description": "Id of the target role.",
             "required": true,
             "type": "integer"
           }
@@ -1876,7 +2206,7 @@
         ],
         "summary": "Gets a list of geographic coordinates and returns their readable addresses or place names",
         "description": "",
-        "operationId": "PostReverseGeocodes",
+        "operationId": "GetAddressBatch",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -1947,7 +2277,7 @@
         ],
         "summary": "Gets geographic coordinate and returns its readable address or place name",
         "description": "",
-        "operationId": "GetReverseGeocodeByReverseGeocodeid",
+        "operationId": "GetAddress",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -3126,7 +3456,7 @@
         ],
         "summary": "Gets a list of addresses and returns their geographic coordinates",
         "description": "",
-        "operationId": "PostGeocodes",
+        "operationId": "GetGeographicCoordinatesBatch",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -3196,7 +3526,7 @@
         ],
         "summary": "Gets an address and returns its geographic coordinates",
         "description": "",
-        "operationId": "GetGeocodeByGeocodeid",
+        "operationId": "GetGeographicCoordinates",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -3206,12 +3536,11 @@
             "type": "integer"
           },
           {
-            "name": "geocodeid:long",
-            "in": "path",
-            "description": "Geocodeid of the Geocode you want to work with.",
+            "name": "address",
+            "in": "query",
+            "description": "Address you want to geocode.",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -3427,7 +3756,7 @@
     "/applications/{applicationid:int}/eventrules": {
       "get": {
         "tags": [
-          "EventRules"
+          "Events"
         ],
         "summary": "Get a list of EventRules",
         "description": "",
@@ -3487,6 +3816,81 @@
               "items": {
                 "type": "object",
                 "$ref": "#/definitions/EventRuleModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/devicetypes": {
+      "get": {
+        "tags": [
+          "Device"
+        ],
+        "summary": "Return a list of DeviceTypes.",
+        "description": "",
+        "operationId": "GetDeviceTypes",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/DeviceTypeModel"
               }
             }
           }
@@ -4804,6 +5208,13 @@
         "description": {
           "type": "string"
         },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DeviceModel"
+          }
+        },
         "email": {
           "type": "string"
         },
@@ -5032,6 +5443,27 @@
         "proximity",
         "staticPort",
         "timeStamp"
+      ],
+      "type": "object"
+    },
+    "DeviceModel": {
+      "properties": {
+        "deviceTypeId": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "imei": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deviceTypeId",
+        "id"
       ],
       "type": "object"
     },
@@ -5339,6 +5771,29 @@
       "properties": {
         "id": {
           "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "RoleModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "usersIds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
         }
       },
       "required": [
@@ -5771,6 +6226,23 @@
       ],
       "type": "object"
     },
+    "DeviceTypeModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
     "CustomFieldModel": {
       "properties": {
         "id": {
@@ -6007,9 +6479,6 @@
       "name": "TrackInfos"
     },
     {
-      "name": "UserTypes"
-    },
-    {
       "name": "Tokens",
       "description": "Use this resource to get an ApiKey"
     },
@@ -6017,8 +6486,7 @@
       "name": "Tags"
     },
     {
-      "name": "Tags/Users",
-      "description": "Operations for listing/adding/removing user(s) in/to/from a tag"
+      "name": "Roles"
     },
     {
       "name": "Geocoding"
@@ -6043,7 +6511,7 @@
       "name": "Events"
     },
     {
-      "name": "EventRules"
+      "name": "Device"
     },
     {
       "name": "Users/Jobs",
