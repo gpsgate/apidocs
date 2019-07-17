@@ -773,6 +773,77 @@
       },
       "parameters": []
     },
+    "/batch/applications/{applicationid:int}/users": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add existing users to an application",
+        "description": "",
+        "operationId": "PatchUsers",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "name": "Ids of users",
+            "description": "An array of Users Ids.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
     "/applications/{applicationid:int}/users/{userid:int}/tracks": {
       "get": {
         "tags": [
@@ -1000,6 +1071,265 @@
             "schema": {
               "$ref": "#/definitions/UserStatusModel"
             }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/devices": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Return a list of Devices for a User.",
+        "description": "",
+        "operationId": "GetDevices",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/DeviceModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Create a Device.",
+        "description": "",
+        "operationId": "PostDevice",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DeviceCreateModel"
+            },
+            "name": "device",
+            "description": "Device object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/DeviceCreateModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/devices/{deviceid:long}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Return a Device by Device ID.",
+        "description": "",
+        "operationId": "GetDeviceByDeviceid",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "deviceid:long",
+            "in": "path",
+            "description": "ID of the device.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/DeviceModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Remove a Device",
+        "description": "",
+        "operationId": "DeleteDeviceByDeviceid",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "deviceid:long",
+            "in": "path",
+            "description": "ID of the device.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
         "security": [
@@ -3831,7 +4161,7 @@
     "/applications/{applicationid:int}/devicetypes": {
       "get": {
         "tags": [
-          "Device"
+          "Devices"
         ],
         "summary": "Return a list of DeviceTypes.",
         "description": "",
@@ -3891,6 +4221,71 @@
               "items": {
                 "type": "object",
                 "$ref": "#/definitions/DeviceTypeModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/devicetypes/{devicetypesid:int}/devicemappers": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Return a list of DeviceMappers per DeviceType.",
+        "description": "",
+        "operationId": "GetDeviceMappers",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "devicetypesid:int",
+            "in": "path",
+            "description": "ID of the UserType.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/DeviceMapperModel"
               }
             }
           }
@@ -5126,7 +5521,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/Device"
+            "$ref": "#/definitions/DeviceModel"
           }
         },
         "driverID": {
@@ -5212,7 +5607,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/DeviceModel"
+            "$ref": "#/definitions/DeviceCreateModel"
           }
         },
         "email": {
@@ -5330,7 +5725,7 @@
       ],
       "type": "object"
     },
-    "Device": {
+    "DeviceModel": {
       "properties": {
         "aPN": {
           "type": "string"
@@ -5446,8 +5841,11 @@
       ],
       "type": "object"
     },
-    "DeviceModel": {
+    "DeviceCreateModel": {
       "properties": {
+        "deviceMapperID": {
+          "type": "integer"
+        },
         "deviceTypeId": {
           "type": "integer"
         },
@@ -5462,6 +5860,7 @@
         }
       },
       "required": [
+        "deviceMapperID",
         "deviceTypeId",
         "id"
       ],
@@ -6243,6 +6642,23 @@
       ],
       "type": "object"
     },
+    "DeviceMapperModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
     "CustomFieldModel": {
       "properties": {
         "id": {
@@ -6476,6 +6892,9 @@
       "name": "Tracks"
     },
     {
+      "name": "Devices"
+    },
+    {
       "name": "TrackInfos"
     },
     {
@@ -6509,9 +6928,6 @@
     },
     {
       "name": "Events"
-    },
-    {
-      "name": "Device"
     },
     {
       "name": "Users/Jobs",
