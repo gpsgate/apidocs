@@ -4118,7 +4118,7 @@
         "tags": [
           "Accumulator"
         ],
-        "summary": "Return a list of Accumulators. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
+        "summary": "Return a list of Accumulators.",
         "description": "",
         "operationId": "GetAccumulators",
         "parameters": [
@@ -4193,7 +4193,7 @@
         "tags": [
           "Accumulator"
         ],
-        "summary": "Updates accumulator values in batch. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
+        "summary": "Updates accumulator values in batch.",
         "description": "",
         "operationId": "PutAccumulators",
         "parameters": [
