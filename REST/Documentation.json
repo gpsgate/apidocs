@@ -6248,6 +6248,9 @@
         "position": {
           "$ref": "#/definitions/Position"
         },
+        "username": {
+          "type": "string"
+        },
         "uTC": {
           "type": "string"
         },
