@@ -10,16 +10,268 @@
   },
   "basePath": "/comGpsGate/api/v.1",
   "paths": {
+    "/deploy/status": {
+      "get": {
+        "tags": ["Plugins"],
+        "summary": "Return deployment's status.",
+        "description": "",
+        "operationId": "Getdeployment_status",
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/DeployStatusModel"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/repositories": {
+      "get": {
+        "tags": ["Plugins"],
+        "summary": "Returns a list of RepositoryModels.",
+        "description": "",
+        "operationId": "GetRepositories",
+        "parameters": [{
+            "name": "Url",
+            "in": "query",
+            "description": "Repository URL",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Category",
+            "in": "query",
+            "description": "Filter by plugin category",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "InstallationStatus",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "All",
+            "enum": ["All", "NotInstalled", "Outdated", "UpToDate"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/RepositoryModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/plugins": {
+      "get": {
+        "tags": ["Plugins"],
+        "summary": "Returns a list of Plugins.",
+        "description": "",
+        "operationId": "ListAllPlugins",
+        "parameters": [{
+          "name": "Category",
+          "in": "query",
+          "description": "Filter by plugin category",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/PluginModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "put": {
+        "tags": ["Plugins"],
+        "summary": "Updates All Plugins.",
+        "description": "",
+        "operationId": "UpdateAllPlugins",
+        "parameters": [{
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PluginUpdateModel"
+          },
+          "name": "Repository Url",
+          "description": "The Repository Url that is used to update the plugins.",
+          "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "post": {
+        "tags": ["Plugins"],
+        "summary": "Installs a Plugin.",
+        "description": "",
+        "operationId": "InstallAPlugin",
+        "parameters": [{
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PluginInstallModel"
+          },
+          "name": "Plugin",
+          "description": "The plugin to install.",
+          "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
     "/applications": {
       "get": {
-        "tags": [
-          "Application"
-        ],
+        "tags": ["Application"],
         "summary": "Return a list of Applications.",
         "description": "",
         "operationId": "GetApplications",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "FromIndex",
             "in": "query",
             "description": "The starting index of the page (exclusive)",
@@ -70,30 +322,24 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Application"
-        ],
+        "tags": ["Application"],
         "summary": "Creates a new application.",
         "description": "",
         "operationId": "PostApplication",
-        "parameters": [
-          {
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/ApplicationCreateModel"
-            },
-            "name": "application",
-            "description": "Application Model. <br/><br/><b>TimeZone</b> property of the model should be set to one of the standard time zones available here 'https://en.wikipedia.org/wiki/List_of_tz_database_time_zones' (default is <b>Etc/UTC</b>)<br/><br/><b>Language</b> property of the model should be set to the name of one of the language plugins available on your server (default is <b>English</b>)<br/><br/><b>Measurement</b> property of the model should be set to one of these values: metric, en-us, nautic (default is <b>metric</b>)<br/><br/><b>Culture</b> property of the model should be set to one of the cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is 'languagecode-regioncode' where languagecode is a lowercase two-letter code derived from ISO 639-1 and regioncode is an uppercase two-letter code derived from ISO 3166. For example, <b>en-US</b> for English (United States) is a specific culture.",
-            "required": true
-          }
-        ],
+        "parameters": [{
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ApplicationCreateModel"
+          },
+          "name": "application",
+          "description": "Application Model. <br/><br/><b>TimeZone</b> property of the model should be set to one of the standard time zones available here 'https://en.wikipedia.org/wiki/List_of_tz_database_time_zones' (default is <b>Etc/UTC</b>)<br/><br/><b>Language</b> property of the model should be set to the name of one of the language plugins available on your server (default is <b>English</b>)<br/><br/><b>Measurement</b> property of the model should be set to one of these values: metric, en-us, nautic (default is <b>metric</b>)<br/><br/><b>Culture</b> property of the model should be set to one of the cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is 'languagecode-regioncode' where languagecode is a lowercase two-letter code derived from ISO 639-1 and regioncode is an uppercase two-letter code derived from ISO 3166. For example, <b>en-US</b> for English (United States) is a specific culture.",
+          "required": true
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -123,31 +369,25 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/views": {
       "get": {
-        "tags": [
-          "Views"
-        ],
+        "tags": ["Views"],
         "summary": "Return a list of Views",
         "description": "",
         "operationId": "GetViews",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -181,21 +421,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Views"
-        ],
+        "tags": ["Views"],
         "summary": "Add a View",
         "description": "",
         "operationId": "PostView",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -241,24 +476,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/views/{viewid:long}": {
       "delete": {
-        "tags": [
-          "Views"
-        ],
+        "tags": ["Views"],
         "summary": "Delete a View",
         "description": "",
         "operationId": "DeleteViewByViewid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -297,31 +527,25 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/variables": {
       "get": {
-        "tags": [
-          "Variables"
-        ],
+        "tags": ["Variables"],
         "summary": "Return a list of Variables.",
         "description": "",
         "operationId": "GetVariables",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -355,24 +579,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Return a list of Users.",
         "description": "",
         "operationId": "GetUsers",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -445,21 +664,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Add a User.",
         "description": "",
         "operationId": "PostUser",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -505,24 +719,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Return a User by UserId.",
         "description": "",
         "operationId": "GetUserByUserId",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -543,9 +752,7 @@
             "required": false,
             "type": "string",
             "default": "UserId",
-            "enum": [
-              "UserId"
-            ]
+            "enum": ["UserId"]
           }
         ],
         "responses": {
@@ -577,21 +784,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update a User",
         "description": "",
         "operationId": "PutUserByUserId",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -645,24 +847,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{username:string}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Return a User by Username.",
         "description": "",
         "operationId": "GetUserByUsername",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -683,9 +880,7 @@
             "required": false,
             "type": "string",
             "default": "Username",
-            "enum": [
-              "Username"
-            ]
+            "enum": ["Username"]
           }
         ],
         "responses": {
@@ -717,24 +912,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/batch/applications/{applicationid:int}/users": {
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Add existing users to an application",
         "description": "",
         "operationId": "PatchUsers",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -788,24 +978,87 @@
             }
           }
         },
-        "security": [
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/tripinfos": {
+      "get": {
+        "tags": ["Tracks"],
+        "summary": "Return a list of TripInfos.",
+        "description": "",
+        "operationId": "GetTripInfos",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
           {
-            "ApiKey": []
+            "name": "userid:int",
+            "in": "path",
+            "description": "The user id for which you want to get the Trip summaries",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Date",
+            "in": "query",
+            "description": "The date, in Vehicle Triper application local time, that you want to get the Trip summaries for. (for example 2017-10-30)",
+            "required": true,
+            "type": "string",
+            "format": "date"
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/TripInfoModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/tracks": {
       "get": {
-        "tags": [
-          "Tracks"
-        ],
+        "tags": ["Tracks"],
         "summary": "Return a list of TrackModels.",
         "description": "",
         "operationId": "GetTracks",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -883,24 +1136,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/trackinfos": {
       "get": {
-        "tags": [
-          "Tracks"
-        ],
+        "tags": ["Tracks"],
         "summary": "Return a list of TrackInfos.",
         "description": "",
         "operationId": "GetTrackInfos",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -964,24 +1212,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/status": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Returns the latest position and variables for a user",
         "description": "",
         "operationId": "GetStatus",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1025,24 +1268,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/devices": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Return a list of Devices for a User.",
         "description": "",
         "operationId": "GetDevices",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1090,21 +1328,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Create a Device.",
         "description": "",
         "operationId": "PostDevice",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1157,24 +1390,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/devices/{deviceid:long}": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Return a Device by Device ID.",
         "description": "",
         "operationId": "GetDeviceByDeviceid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1225,21 +1453,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Remove a Device",
         "description": "",
         "operationId": "DeleteDeviceByDeviceid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1284,24 +1507,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/customfields": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Returns a list of user custom fields.",
         "description": "",
         "operationId": "GetCustomFields",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1349,24 +1567,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/customfields/{customfieldname:string}": {
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Updates a user custom field.",
         "description": "",
         "operationId": "PutCustomFieldByCustomFieldName",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1427,24 +1640,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/batch/applications/{applicationid:int}/users/{userid:int}/customfields": {
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Updates a list of a user's custom fields.",
         "description": "",
         "operationId": "PutCustomFields",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1505,31 +1713,25 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/usertypes": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Return a list of UserTypes.",
         "description": "",
         "operationId": "GetUserTypes",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -1563,24 +1765,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/usersstatus": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Returns the latest position and variables for users within an application",
         "description": "",
         "operationId": "GetUsersStatus",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1603,6 +1800,13 @@
             "required": false,
             "type": "integer",
             "default": 1000
+          },
+          {
+            "name": "TagId",
+            "in": "query",
+            "description": "Filter results by a tag",
+            "required": false,
+            "type": "integer"
           },
           {
             "name": "UpdatesFrom",
@@ -1646,24 +1850,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/trackinfos": {
       "get": {
-        "tags": [
-          "TrackInfos"
-        ],
+        "tags": ["Tracks"],
         "summary": "Return a list of TrackInfo.",
         "description": "",
         "operationId": "GetApplicationTrackInfos",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1745,24 +1944,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/tokens": {
       "post": {
-        "tags": [
-          "Tokens"
-        ],
+        "tags": ["Tokens"],
         "summary": "Authorization",
         "description": "This method is used for getting an ApiKey",
         "operationId": "GetAPIToken",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1813,14 +2007,11 @@
     },
     "/applications/{applicationid:int}/tags": {
       "get": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Get a list of Tags",
         "description": "",
         "operationId": "GetTags",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1878,21 +2069,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Add a Tag",
         "description": "",
         "operationId": "PostTag",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -1938,24 +2124,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/tags/{tagid:long}": {
       "put": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Update a Tag",
         "description": "",
         "operationId": "PutTagByTagid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2009,24 +2190,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/tags/{tagid:int}/users": {
       "get": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Get users within a tag",
         "description": "",
         "operationId": "GetUsersWithinTag",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2091,21 +2267,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Add a user to a tag",
         "description": "",
         "operationId": "PostUserWithinTag",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2158,24 +2329,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/tags/{tagid:int}/users/{userid:long}": {
       "delete": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Remove a user from a tag",
         "description": "",
         "operationId": "DeleteUserWithinTagByUserid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2221,24 +2387,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/roles": {
       "get": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Get a list of Roles",
         "description": "",
         "operationId": "GetRoles",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2296,24 +2457,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/roles/{roleid:long}": {
       "get": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Get a Role by Id",
         "description": "",
         "operationId": "GetRoleByRoleid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2358,24 +2514,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/roles/{roleid:int}/users/{userid:long}": {
       "delete": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Remove a user from a role",
         "description": "",
         "operationId": "DeleteUserWithinRoleByUserid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2421,24 +2572,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/batch/applications/{applicationid:int}/roles/{roleid:int}/users": {
       "post": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Adds a list of users to the role",
         "description": "",
         "operationId": "PostUsersWithinRole",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2499,21 +2645,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Remove all users from this role",
         "description": "",
         "operationId": "DeleteUsersWithinRole",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2551,24 +2692,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/batch/applications/{applicationid:int}/reversegeocodes": {
       "post": {
-        "tags": [
-          "Geocoding"
-        ],
+        "tags": ["Geocoding"],
         "summary": "Gets a list of geographic coordinates and returns their readable addresses or place names",
         "description": "",
         "operationId": "GetAddressBatch",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2622,24 +2758,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reversegeocode": {
       "get": {
-        "tags": [
-          "Geocoding"
-        ],
+        "tags": ["Geocoding"],
         "summary": "Gets geographic coordinate and returns its readable address or place name",
         "description": "",
         "operationId": "GetAddress",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2692,24 +2823,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/messageproviders": {
       "get": {
-        "tags": [
-          "MessageProviders"
-        ],
+        "tags": ["MessageProviders"],
         "summary": "Return a list of Message Providers.",
         "description": "",
         "operationId": "GetMessageProviders",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2767,21 +2893,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "MessageProviders"
-        ],
+        "tags": ["MessageProviders"],
         "summary": "Add a Message Provider",
         "description": "",
         "operationId": "PostMessageProvider",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2827,24 +2948,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/messageproviders/{messageproviderid:long}": {
       "get": {
-        "tags": [
-          "MessageProviders"
-        ],
+        "tags": ["MessageProviders"],
         "summary": "Return a Message Provider by ID.",
         "description": "",
         "operationId": "GetMessageProviderByMessageProviderid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2889,21 +3005,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "MessageProviders"
-        ],
+        "tags": ["MessageProviders"],
         "summary": "Update a Message Provider",
         "description": "",
         "operationId": "PutMessageProviderByMessageProviderid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -2957,21 +3068,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "MessageProviders"
-        ],
+        "tags": ["MessageProviders"],
         "summary": "Delete a Message Provider",
         "description": "",
         "operationId": "DeleteMessageProviderByMessageProviderid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3010,31 +3116,25 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/messageprovidertypes": {
       "get": {
-        "tags": [
-          "MessageProviderTypes"
-        ],
+        "tags": ["MessageProviderTypes"],
         "summary": "Return a list of Message Provider Types.",
         "description": "",
         "operationId": "GetMessageProviderTypes",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -3068,24 +3168,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geofences": {
       "get": {
-        "tags": [
-          "Geofences"
-        ],
+        "tags": ["Geofences"],
         "summary": "Return Geofences within an application.",
         "description": "",
         "operationId": "GetGeofences",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3143,21 +3238,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Geofences"
-        ],
+        "tags": ["Geofences"],
         "summary": "Create a Geofence.",
         "description": "",
         "operationId": "PostGeofence",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3203,24 +3293,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geofences/{geofenceid:long}": {
       "get": {
-        "tags": [
-          "Geofences"
-        ],
+        "tags": ["Geofences"],
         "summary": "Return a Geofence by ID.",
         "description": "",
         "operationId": "GetGeofenceByGeofenceid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3265,147 +3350,144 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
-			"delete": {
-				"tags": ["Geofences"],
-				"summary": "Delete a Geofence.",
-				"description": "",
-				"operationId": "DeleteGeofenceByGeofenceid",
-				"parameters": [{
-					"name": "applicationid:int",
-					"in": "path",
-					"description": "ID of the application you want to work with.",
-					"required": true,
-					"type": "integer"
-				},
-				{
-					"name": "geofenceid:long",
-					"in": "path",
-					"description": "Geofenceid of the Geofence you want to work with.",
-					"required": true,
-					"type": "integer",
-					"format": "int64"
-				}],
-				"responses": {
-					"200": {
-						"description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-					},
-					"400": {
-						"description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-					},
-					"401": {
-						"description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-					},
-					"403": {
-						"description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-					},
-					"404": {
-						"description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-					},
-					"500": {
-						"description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-					},
-					"503": {
-						"description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-					}
-				},
-				"security": [{
-					"ApiKey": []
-				}]
-			},
+      "delete": {
+        "tags": ["Geofences"],
+        "summary": "Delete a Geofence.",
+        "description": "",
+        "operationId": "DeleteGeofenceByGeofenceid",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "geofenceid:long",
+            "in": "path",
+            "description": "Geofenceid of the Geofence you want to work with.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
       "parameters": []
     },
-		"/applications/{applicationid:int}/geofences/{geofenceid:int}/users": {
-			"get": {
-				"tags": ["Geofences"],
-				"summary": "Returns users currently within the geofence.",
-				"description": "",
-				"operationId": "GetUsersWithinGeofence",
-				"parameters": [{
-					"name": "applicationid:int",
-					"in": "path",
-					"description": "ID of the application you want to work with.",
-					"required": true,
-					"type": "integer"
-				},
-				{
-					"name": "FromIndex",
-					"in": "query",
-					"description": "The starting index of the page (exclusive)",
-					"required": false,
-					"type": "integer",
-					"format": "int64",
-					"default": 0
-				},
-				{
-					"name": "PageSize",
-					"in": "query",
-					"description": "The size of the page",
-					"required": false,
-					"type": "integer",
-					"default": 1000
-				},
-				{
-					"name": "geofenceid:int",
-					"in": "path",
-					"description": "Id of the geofence.",
-					"required": true,
-					"type": "integer"
-				}],
-				"responses": {
-					"200": {
-						"description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-					},
-					"400": {
-						"description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-					},
-					"401": {
-						"description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-					},
-					"403": {
-						"description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-					},
-					"404": {
-						"description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-					},
-					"500": {
-						"description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-					},
-					"503": {
-						"description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-					},
-					"default": {
-						"description": "default",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"$ref": "#/definitions/UserModel"
-							}
-						}
-					}
-				},
-				"security": [{
-					"ApiKey": []
-				}]
-			},
-			"parameters": []
-		},
+    "/applications/{applicationid:int}/geofences/{geofenceid:int}/users": {
+      "get": {
+        "tags": ["Geofences"],
+        "summary": "Returns users currently within the geofence.",
+        "description": "",
+        "operationId": "GetUsersWithinGeofence",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          },
+          {
+            "name": "geofenceid:int",
+            "in": "path",
+            "description": "Id of the geofence.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/UserModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
     "/applications/{applicationid:int}/geofencegroups": {
       "get": {
-        "tags": [
-          "GeofenceGroups"
-        ],
+        "tags": ["GeofenceGroups"],
         "summary": "Get all Geofence Groups in an Application",
         "description": "",
         "operationId": "GetGeofenceGroups",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3463,21 +3545,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "GeofenceGroups"
-        ],
+        "tags": ["GeofenceGroups"],
         "summary": "Add a new Geofence Group",
         "description": "",
         "operationId": "PostGeofenceGroup",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3523,24 +3600,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geofencegroups/{geofencegroupid:long}": {
       "get": {
-        "tags": [
-          "GeofenceGroups"
-        ],
+        "tags": ["GeofenceGroups"],
         "summary": "Get a Geofence Group by Id",
         "description": "",
         "operationId": "GetGeofenceGroupByGeofenceGroupid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3585,21 +3657,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "GeofenceGroups"
-        ],
+        "tags": ["GeofenceGroups"],
         "summary": "Update a Geofence Group",
         "description": "",
         "operationId": "PutGeofenceGroupByGeofenceGroupid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3653,21 +3720,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "GeofenceGroups"
-        ],
+        "tags": ["GeofenceGroups"],
         "summary": "Delete a Geofence Group",
         "description": "",
         "operationId": "DeleteGeofenceGroupByGeofenceGroupid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3712,24 +3774,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geofencegroups/{geofencegroupid:int}/geofences": {
       "get": {
-        "tags": [
-          "GeofenceGroups/Geofence"
-        ],
+        "tags": ["GeofenceGroups/Geofence"],
         "summary": "Get Geofences within a Geofence Group",
         "description": "",
         "operationId": "GetGeofencesWithinGeofenceGroup",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3794,21 +3851,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "GeofenceGroups/Geofence"
-        ],
+        "tags": ["GeofenceGroups/Geofence"],
         "summary": "Add a Geofence to a Geofence Group",
         "description": "",
         "operationId": "PostGeofenceWithinGeofenceGroup",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3861,24 +3913,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geofencegroups/{geofencegroupid:int}/geofences/{geofenceid:int}": {
       "delete": {
-        "tags": [
-          "GeofenceGroups/Geofence"
-        ],
+        "tags": ["GeofenceGroups/Geofence"],
         "summary": "Remove a Geofence from a Geofence Group",
         "description": "",
         "operationId": "DeleteGeofenceWithinGeofenceGroupByGeofenceId",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3924,24 +3971,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/batch/applications/{applicationid:int}/geocodes": {
       "post": {
-        "tags": [
-          "Geocoding"
-        ],
+        "tags": ["Geocoding"],
         "summary": "Gets a list of addresses and returns their geographic coordinates",
         "description": "",
         "operationId": "GetGeographicCoordinatesBatch",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -3994,24 +4036,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/geocode": {
       "get": {
-        "tags": [
-          "Geocoding"
-        ],
+        "tags": ["Geocoding"],
         "summary": "Gets an address and returns its geographic coordinates",
         "description": "",
         "operationId": "GetGeographicCoordinates",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4055,24 +4092,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/events": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "summary": "Get a list of Events",
         "description": "",
         "operationId": "GetEvents",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4160,296 +4192,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applicationtemplates": {	
-      "get": {
-        "tags": [
-          "Application"
-        ],
-        "summary": "Return a list of ApplicationTemplates.",
-        "description": "",
-        "operationId": "GetApplicationTemplates",
-        "parameters": [
-          {
-            "name": "FromIndex",
-            "in": "query",
-            "description": "The starting index of the page (exclusive)",
-            "required": false,
-            "type": "integer",
-            "format": "int64",
-            "default": 0
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "type": "integer",
-            "default": 1000
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/ApplicationTemplateModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/accumulators": {
-      "get": {
-        "tags": [
-          "Accumulator"
-        ],
-        "summary": "Return a list of Accumulators.",
-        "description": "",
-        "operationId": "GetAccumulators",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "FromIndex",
-            "in": "query",
-            "description": "The starting index of the page (exclusive)",
-            "required": false,
-            "type": "integer",
-            "format": "int64",
-            "default": 0
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "type": "integer",
-            "default": 1000
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/AccumulatorModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/batch/applications/{applicationid:int}/accumulators": {
-      "put": {
-        "tags": [
-          "Accumulator"
-        ],
-        "summary": "Updates accumulator values in batch.",
-        "description": "",
-        "operationId": "PutAccumulators",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/AccumulatorModel"
-              }
-            },
-            "name": "accumulators",
-            "description": "An array of Accumulators. For each entry use either (Id) or (UserId + AccumulatorTypeId) to identify an accumulator. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/AccumulatorModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/accumulatortypes": {
-      "get": {
-        "tags": [
-          "Accumulator"
-        ],
-        "summary": "Return a list of AccumulatorTypes.",
-        "description": "",
-        "operationId": "GetAccumulatorTypes",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/AccumulatorTypeModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/eventrules": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "summary": "Get a list of EventRules",
         "description": "",
         "operationId": "GetEventRules",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4507,24 +4262,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/devicetypes": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Return a list of DeviceTypes.",
         "description": "",
         "operationId": "GetDeviceTypes",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4582,24 +4332,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/devicetypes/{devicetypesid:int}/devicemappers": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Return a list of DeviceMappers per DeviceType.",
         "description": "",
         "operationId": "GetDeviceMappers",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4647,24 +4392,270 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/user/{userid:int}/jobs": {
+    "/applications/{applicationid:int}/accumulators": {
       "get": {
-        "tags": [
-          "Users/Jobs"
+        "tags": ["Accumulator"],
+        "summary": "Return a list of Accumulators. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
+        "description": "",
+        "operationId": "GetAccumulators",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          }
         ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/AccumulatorModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/batch/applications/{applicationid:int}/accumulators": {
+      "put": {
+        "tags": ["Accumulator"],
+        "summary": "Updates accumulator values in batch. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
+        "description": "",
+        "operationId": "PutAccumulators",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/AccumulatorModel"
+              }
+            },
+            "name": "accumulators",
+            "description": "An array of Accumulators. For each entry use either (Id) or (UserId + AccumulatorTypeId) to identify an accumulator. The International System of Units is used (meters for Odometers, seconds for Time based accumulators)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/AccumulatorModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/accumulatortypes": {
+      "get": {
+        "tags": ["Accumulator"],
+        "summary": "Return a list of AccumulatorTypes.",
+        "description": "",
+        "operationId": "GetAccumulatorTypes",
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/AccumulatorTypeModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applicationtemplates": {
+      "get": {
+        "tags": ["Application"],
+        "summary": "Return a list of ApplicationTemplates.",
+        "description": "",
+        "operationId": "GetApplicationTemplates",
+        "parameters": [{
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/ApplicationTemplateModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/dispatch/user/{userid:int}/jobs": {
+      "get": {
+        "tags": ["Dispatch"],
         "summary": "Get Jobs for a user",
         "description": "",
         "operationId": "GetUserJobs",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4729,21 +4720,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Users/Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Add a Job to a user",
         "description": "",
         "operationId": "PostUserJob",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4796,24 +4782,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/user/{userid:int}/jobs/{jobid:long}": {
+    "/applications/{applicationid:int}/dispatch/user/{userid:int}/jobs/{jobid:long}": {
       "delete": {
-        "tags": [
-          "Users/Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Remove Job from a user",
         "description": "",
         "operationId": "DeleteUserJobByJobid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4865,24 +4846,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/routes": {
+    "/applications/{applicationid:int}/dispatch/routes": {
       "post": {
-        "tags": [
-          "Routes"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Create a Route",
         "description": "",
         "operationId": "PostRoute",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4928,24 +4904,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/routes/{routeid:long}": {
+    "/applications/{applicationid:int}/dispatch/routes/{routeid:long}": {
       "get": {
-        "tags": [
-          "Routes"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Get a Route",
         "description": "",
         "operationId": "GetRouteByRouteid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -4994,21 +4965,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "Routes"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Update a Route",
         "description": "",
         "operationId": "PutRouteByRouteid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5062,21 +5028,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Routes"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Delete a Route",
         "description": "",
         "operationId": "DeleteRouteByRouteid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5121,24 +5082,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/jobs": {
+    "/applications/{applicationid:int}/dispatch/jobs": {
       "post": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Create a Job",
         "description": "",
         "operationId": "PostJob",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5184,24 +5140,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/jobs/{jobid:long}": {
+    "/applications/{applicationid:int}/dispatch/jobs/{jobid:long}": {
       "get": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Get a Job",
         "description": "",
         "operationId": "GetJobByJobid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5250,21 +5201,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Update a Job",
         "description": "",
         "operationId": "PutJobByJobid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5318,21 +5264,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Delete a Job",
         "description": "",
         "operationId": "DeleteJobByJobid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5377,24 +5318,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
-    "/batch/applications/{applicationid:int}/jobs": {
+    "/batch/applications/{applicationid:int}/dispatch/jobs": {
       "post": {
-        "tags": [
-          "Jobs"
-        ],
+        "tags": ["Dispatch"],
         "summary": "Create multiple Jobs",
         "description": "",
         "operationId": "PostJobs",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5448,24 +5384,287 @@
             }
           }
         },
-        "security": [
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/dispatch/customfields": {
+      "get": {
+        "tags": ["Dispatch"],
+        "summary": "Get a list of all available Dispatch custom fields",
+        "description": "",
+        "operationId": "GetCustomFields",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
           {
-            "ApiKey": []
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/CustomFieldModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/fuelconsumption": {
+      "get": {
+        "tags": ["FuelConsumption"],
+        "summary": "List all fuel entries",
+        "description": "",
+        "operationId": "GetFuelConsumption",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "Start time from which to list fuel refills, defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "End time to which to list fuel refills, defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/FuelConsumptionModel"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "post": {
+        "tags": ["FuelConsumption"],
+        "summary": "Add a new fuel entry",
+        "description": "",
+        "operationId": "PostFuelConsumption",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/FuelConsumptionModel"
+            },
+            "name": "fuelconsumption",
+            "description": "FuelConsumption object <br/> RefilledOn parameter is defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/FuelConsumptionModel"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/fuelconsumption/{fuelconsumptionid:long}": {
+      "delete": {
+        "tags": ["FuelConsumption"],
+        "summary": "Delete a fuel entry",
+        "description": "",
+        "operationId": "DeleteFuelConsumptionByFuelConsumptionid",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "fuelconsumptionid:long",
+            "in": "path",
+            "description": "FuelConsumptionid of the FuelConsumption you want to work with.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/FuelConsumptionModel"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/users/{userid:int}/publish": {
       "get": {
-        "tags": [
-          "Publish"
-        ],
+        "tags": ["Publish"],
         "summary": "Get a publish link for a user",
         "description": "",
         "operationId": "GetPublishByPublishid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5523,215 +5722,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/passengers": {
-      "get": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Returns a list of Passengers.",
-        "description": "",
-        "operationId": "GetPassengers",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "FromIndex",
-            "in": "query",
-            "description": "The starting index of the page (exclusive)",
-            "required": false,
-            "type": "integer",
-            "format": "int64",
-            "default": 0
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "type": "integer",
-            "default": 1000
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/PassengerModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Adds a Passenger.",
-        "description": "",
-        "operationId": "PostPassenger",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/PassengerModel"
-            },
-            "name": "passenger",
-            "description": "Passenger object",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "$ref": "#/definitions/PassengerModel"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/passengers/{passengerid:long}": {
-      "delete": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Removes a Passenger",
-        "description": "",
-        "operationId": "DeletePassengerByPassengerid",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "passengerid:long",
-            "in": "path",
-            "description": "Passengerid of the Passenger you want to work with.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reports": {
       "get": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Read Reports.",
         "description": "",
         "operationId": "GetReports",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5789,21 +5792,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "post": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Create Report.",
         "description": "",
         "operationId": "PostReport",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5849,24 +5847,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reports/{reportid:long}": {
       "get": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Read Report.",
         "description": "",
         "operationId": "GetReportByReportid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5911,21 +5904,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "put": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Update Report.",
         "description": "",
         "operationId": "PutReportByReportid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -5979,21 +5967,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Delete Report.",
         "description": "",
         "operationId": "DeleteReportByReportid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -6032,24 +6015,19 @@
             "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reports/{reportid:int}/renderings": {
       "post": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Render report.",
         "description": "",
         "operationId": "PostRendering",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -6102,24 +6080,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reports/{reportid:int}/renderings/{renderingid:long}": {
       "get": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Read rendering status.",
         "description": "",
         "operationId": "GetRenderingByRenderingid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -6171,21 +6144,16 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "delete": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Cancel rendering.",
         "description": "",
         "operationId": "DeleteRenderingByRenderingid",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -6241,24 +6209,19 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reporttemplates": {
       "get": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Read ReportTemplates.",
         "description": "",
         "operationId": "GetReportTemplates",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applicationid:int",
             "in": "path",
             "description": "ID of the application you want to work with.",
@@ -6316,31 +6279,25 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
     },
     "/applications/{applicationid:int}/reports/formats": {
       "get": {
-        "tags": [
-          "Report"
-        ],
+        "tags": ["Report"],
         "summary": "Read ReportFormats.",
         "description": "",
         "operationId": "GetFormats",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
+        "parameters": [{
+          "name": "applicationid:int",
+          "in": "path",
+          "description": "ID of the application you want to work with.",
+          "required": true,
+          "type": "integer"
+        }],
         "responses": {
           "200": {
             "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
@@ -6374,16 +6331,325 @@
             }
           }
         },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
+        "security": [{
+          "ApiKey": []
+        }]
       },
       "parameters": []
-    }	
-  },  
+    },
+    "/applications/{applicationid:int}/passengers": {
+      "get": {
+        "tags": ["Passenger Manager"],
+        "summary": "Returns a list of Passengers.",
+        "description": "",
+        "operationId": "GetPassengers",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/PassengerModel"
+              }
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "post": {
+        "tags": ["Passenger Manager"],
+        "summary": "Adds a Passenger.",
+        "description": "",
+        "operationId": "PostPassenger",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PassengerModel"
+            },
+            "name": "passenger",
+            "description": "Passenger object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/PassengerModel"
+            }
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/passengers/{passengerid:long}": {
+      "delete": {
+        "tags": ["Passenger Manager"],
+        "summary": "Removes a Passenger",
+        "description": "",
+        "operationId": "DeletePassengerByPassengerid",
+        "parameters": [{
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "passengerid:long",
+            "in": "path",
+            "description": "Passengerid of the Passenger you want to work with.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          }
+        },
+        "security": [{
+          "ApiKey": []
+        }]
+      },
+      "parameters": []
+    }
+  },
   "definitions": {
+    "DeployAction": {
+      "type": "string",
+      "enum": ["None", "Update", "Install"]
+    },
+    "DeployStatusModel": {
+      "properties": {
+        "action": {
+          "$ref": "#/definitions/DeployAction"
+        },
+        "currentStep": {
+          "type": "integer"
+        },
+        "pluginId": {
+          "type": "integer"
+        },
+        "pluginName": {
+          "type": "string"
+        },
+        "pluginNamespace": {
+          "type": "string"
+        },
+        "stepDescription": {
+          "type": "string"
+        },
+        "targetVersion": {
+          "type": "string"
+        },
+        "totalSteps": {
+          "type": "integer"
+        }
+      },
+      "required": ["action", "currentStep", "pluginId", "totalSteps"],
+      "type": "object"
+    },
+    "InstallationStatus": {
+      "type": "string",
+      "enum": ["All", "NotInstalled", "Outdated", "UpToDate"]
+    },
+    "RepositoryModel": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "downloadUrl": {
+          "type": "string"
+        },
+        "homepageUrl": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "packageVersionString": {
+          "type": "string"
+        },
+        "platformDependencies": {
+          "type": "string"
+        },
+        "repositoryUrl": {
+          "type": "string"
+        },
+        "requiresValidSupport": {
+          "type": "boolean"
+        },
+        "serverVersionString": {
+          "type": "string"
+        },
+        "targetFramework": {
+          "type": "string"
+        }
+      },
+      "required": ["requiresValidSupport"],
+      "type": "object"
+    },
+    "PluginModel": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "packageVersionString": {
+          "type": "string"
+        },
+        "repositoryUrl": {
+          "type": "string"
+        },
+        "serverVersionString": {
+          "type": "string"
+        }
+      },
+      "required": ["id"],
+      "type": "object"
+    },
+    "PluginUpdateModel": {
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PluginInstallModel": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ApplicationModel": {
       "properties": {
         "created": {
@@ -6414,15 +6680,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "created",
-        "expire",
-        "expired",
-        "id",
-        "licensesUsed",
-        "maxUsers",
-        "userCount"
-      ],
+      "required": ["created", "expire", "expired", "id", "licensesUsed", "maxUsers", "userCount"],
       "type": "object"
     },
     "ApplicationCreateModel": {
@@ -6455,11 +6713,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "adminUserId",
-        "applicationTemplateId",
-        "id"
-      ],
+      "required": ["adminUserId", "applicationTemplateId", "id"],
       "type": "object"
     },
     "ViewModel": {
@@ -6489,22 +6743,12 @@
           }
         }
       },
-      "required": [
-        "applicationID",
-        "id",
-        "matchAllTags",
-        "statusFilter"
-      ],
+      "required": ["applicationID", "id", "matchAllTags", "statusFilter"],
       "type": "object"
     },
     "GateUserNetStatus": {
       "type": "string",
-      "enum": [
-        "Sending",
-        "Connected",
-        "Offline",
-        "NeverBeenConnected"
-      ]
+      "enum": ["Sending", "Connected", "Offline", "NeverBeenConnected"]
     },
     "VariableModel": {
       "properties": {
@@ -6575,12 +6819,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "calculatedSpeed",
-        "deviceActivity",
-        "id",
-        "userTemplateID"
-      ],
+      "required": ["calculatedSpeed", "deviceActivity", "id", "userTemplateID"],
       "type": "object"
     },
     "UserEditModel": {
@@ -6610,9 +6849,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "UserCreateModel": {
@@ -6652,10 +6889,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "id",
-        "userTypeId"
-      ],
+      "required": ["id", "userTypeId"],
       "type": "object"
     },
     "Velocity": {
@@ -6667,10 +6901,7 @@
           "type": "number"
         }
       },
-      "required": [
-        "groundSpeed",
-        "heading"
-      ],
+      "required": ["groundSpeed", "heading"],
       "type": "object"
     },
     "Position": {
@@ -6685,11 +6916,7 @@
           "type": "number"
         }
       },
-      "required": [
-        "altitude",
-        "latitude",
-        "longitude"
-      ],
+      "required": ["altitude", "latitude", "longitude"],
       "type": "object"
     },
     "TrackPoint": {
@@ -6707,10 +6934,7 @@
           "$ref": "#/definitions/Velocity"
         }
       },
-      "required": [
-        "uTC",
-        "valid"
-      ],
+      "required": ["uTC", "valid"],
       "type": "object"
     },
     "MSISDN": {
@@ -6736,10 +6960,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "deviceDefinitionID",
-        "deviceID"
-      ],
+      "required": ["deviceDefinitionID", "deviceID"],
       "type": "object"
     },
     "DeviceModel": {
@@ -6839,23 +7060,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "created",
-        "deviceDefinitionID",
-        "hidePosition",
-        "iD",
-        "lastPort",
-        "latitude",
-        "longitude",
-        "mobileNetworkID",
-        "msgFieldDictionaryID",
-        "ownerID",
-        "profileId",
-        "protocolVersionID",
-        "proximity",
-        "staticPort",
-        "timeStamp"
-      ],
+      "required": ["created", "deviceDefinitionID", "hidePosition", "iD", "lastPort", "latitude", "longitude", "mobileNetworkID", "msgFieldDictionaryID", "ownerID", "profileId", "protocolVersionID", "proximity", "staticPort", "timeStamp"],
       "type": "object"
     },
     "DeviceCreateModel": {
@@ -6876,11 +7081,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "deviceMapperID",
-        "deviceTypeId",
-        "id"
-      ],
+      "required": ["deviceMapperID", "deviceTypeId", "id"],
       "type": "object"
     },
     "UserIconModel": {
@@ -6898,11 +7099,31 @@
           "type": "boolean"
         }
       },
-      "required": [
-        "iconOffsetX",
-        "iconOffsetY",
-        "rotatable"
-      ],
+      "required": ["iconOffsetX", "iconOffsetY", "rotatable"],
+      "type": "object"
+    },
+    "TripInfoModel": {
+      "properties": {
+        "endTrackPoint": {
+          "$ref": "#/definitions/TrackPoint"
+        },
+        "isIdle": {
+          "type": "boolean"
+        },
+        "startTrackPoint": {
+          "$ref": "#/definitions/TrackPoint"
+        },
+        "totalDistance": {
+          "type": "number"
+        },
+        "trackInfoId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": ["isIdle", "totalDistance", "trackInfoId", "userId"],
       "type": "object"
     },
     "TrackModel": {
@@ -6932,12 +7153,7 @@
           "$ref": "#/definitions/Velocity"
         }
       },
-      "required": [
-        "serverUtc",
-        "trackInfoId",
-        "uTC",
-        "valid"
-      ],
+      "required": ["serverUtc", "trackInfoId", "uTC", "valid"],
       "type": "object"
     },
     "TrackInfoModel": {
@@ -6967,13 +7183,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "count",
-        "id",
-        "totalDistance",
-        "updated",
-        "userId"
-      ],
+      "required": ["count", "id", "totalDistance", "updated", "userId"],
       "type": "object"
     },
     "BoundingBox": {
@@ -7009,18 +7219,7 @@
           "type": "number"
         }
       },
-      "required": [
-        "maxM",
-        "maxTime",
-        "maxX",
-        "maxY",
-        "maxZ",
-        "minM",
-        "minTime",
-        "minX",
-        "minY",
-        "minZ"
-      ],
+      "required": ["maxM", "maxTime", "maxX", "maxY", "maxZ", "minM", "minTime", "minX", "minY", "minZ"],
       "type": "object"
     },
     "UserStatusModel": {
@@ -7048,10 +7247,7 @@
           "$ref": "#/definitions/Velocity"
         }
       },
-      "required": [
-        "id",
-        "uTC"
-      ],
+      "required": ["id", "uTC"],
       "type": "object"
     },
     "VariableStatusModel": {
@@ -7069,9 +7265,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "time"
-      ],
+      "required": ["time"],
       "type": "object"
     },
     "UserCustomFieldModel": {
@@ -7094,9 +7288,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "ApplicationTrackInfoModel": {
@@ -7117,13 +7309,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "count",
-        "created",
-        "id",
-        "updated",
-        "userId"
-      ],
+      "required": ["count", "created", "id", "updated", "userId"],
       "type": "object"
     },
     "TokenModel": {
@@ -7180,10 +7366,7 @@
           }
         }
       },
-      "required": [
-        "applicationId",
-        "id"
-      ],
+      "required": ["applicationId", "id"],
       "type": "object"
     },
     "APIModel": {
@@ -7192,9 +7375,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "RoleModel": {
@@ -7215,9 +7396,7 @@
           }
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "ReverseGeocodeResult": {
@@ -7320,16 +7499,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "callInterval",
-        "customLong",
-        "defaultProvider",
-        "enabled",
-        "id",
-        "isStarted",
-        "timeout",
-        "typeID"
-      ],
+      "required": ["callInterval", "customLong", "defaultProvider", "enabled", "id", "isStarted", "timeout", "typeID"],
       "type": "object"
     },
     "MessageProviderTypeModel": {
@@ -7341,9 +7511,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "GeofenceModel": {
@@ -7370,10 +7538,7 @@
           "$ref": "#/definitions/ShapeType"
         }
       },
-      "required": [
-        "id",
-        "shapeType"
-      ],
+      "required": ["id", "shapeType"],
       "type": "object"
     },
     "Position2D": {
@@ -7385,19 +7550,12 @@
           "type": "number"
         }
       },
-      "required": [
-        "latitude",
-        "longitude"
-      ],
+      "required": ["latitude", "longitude"],
       "type": "object"
     },
     "ShapeType": {
       "type": "string",
-      "enum": [
-        "Polygon",
-        "Circle",
-        "Route"
-      ]
+      "enum": ["Polygon", "Circle", "Route"]
     },
     "PolygonShape": {
       "properties": {
@@ -7420,9 +7578,7 @@
           "type": "number"
         }
       },
-      "required": [
-        "radius"
-      ],
+      "required": ["radius"],
       "type": "object"
     },
     "RouteShape": {
@@ -7438,9 +7594,7 @@
           }
         }
       },
-      "required": [
-        "radius"
-      ],
+      "required": ["radius"],
       "type": "object"
     },
     "GeofenceGroupModel": {
@@ -7466,15 +7620,14 @@
         "pinned": {
           "type": "boolean"
         },
+        "priority": {
+          "type": "integer"
+        },
         "useInGeocoding": {
           "type": "boolean"
         }
       },
-      "required": [
-        "id",
-        "pinned",
-        "useInGeocoding"
-      ],
+      "required": ["id", "pinned", "priority", "useInGeocoding"],
       "type": "object"
     },
     "GeocodeResult": {
@@ -7553,17 +7706,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "applicationId",
-        "closed",
-        "closedTimeStamp",
-        "eventStage",
-        "expressionEvaluatorId",
-        "id",
-        "ongoing",
-        "supportUi",
-        "userId"
-      ],
+      "required": ["applicationId", "closed", "closedTimeStamp", "eventStage", "expressionEvaluatorId", "id", "ongoing", "supportUi", "userId"],
       "type": "object"
     },
     "Argument": {
@@ -7587,79 +7730,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "argumentID",
-        "eventID"
-      ],
-      "type": "object"
-    },
-    "ApplicationTemplateModel": {
-      "properties": {
-        "created": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "created",
-        "id"
-      ],
-      "type": "object"
-    },
-    "AccumulatorModel": {
-      "properties": {
-        "accumulatorTypeId": {
-          "type": "integer"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "userId": {
-          "type": "integer"
-        },
-        "value": {
-          "type": "number"
-        }
-      },
-      "required": [
-        "accumulatorTypeId",
-        "id",
-        "timestamp",
-        "userId",
-        "value"
-      ],
-      "type": "object"
-    },
-    "AccumulatorTypeModel": {
-      "properties": {
-        "applicationId": {
-          "type": "integer"
-        },
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "applicationId",
-        "id"
-      ],
+      "required": ["argumentID", "eventID"],
       "type": "object"
     },
     "EventRuleModel": {
@@ -7686,11 +7757,7 @@
           }
         }
       },
-      "required": [
-        "applicationID",
-        "disabled",
-        "id"
-      ],
+      "required": ["applicationID", "disabled", "id"],
       "type": "object"
     },
     "DeviceTypeModel": {
@@ -7705,9 +7772,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
       "type": "object"
     },
     "DeviceMapperModel": {
@@ -7722,9 +7787,64 @@
           "type": "string"
         }
       },
-      "required": [
-        "id"
-      ],
+      "required": ["id"],
+      "type": "object"
+    },
+    "AccumulatorModel": {
+      "properties": {
+        "accumulatorTypeId": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": ["accumulatorTypeId", "id", "timestamp", "userId", "value"],
+      "type": "object"
+    },
+    "AccumulatorTypeModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["applicationId", "id"],
+      "type": "object"
+    },
+    "ApplicationTemplateModel": {
+      "properties": {
+        "created": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["created", "id"],
       "type": "object"
     },
     "CustomFieldModel": {
@@ -7753,6 +7873,9 @@
         "description": {
           "type": "string"
         },
+        "duration": {
+          "type": "integer"
+        },
         "id": {
           "type": "string"
         },
@@ -7778,12 +7901,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "lat",
-        "lon",
-        "poiId",
-        "workerId"
-      ],
+      "required": ["duration", "lat", "lon", "poiId", "workerId"],
       "type": "object"
     },
     "RouteModel": {
@@ -7814,6 +7932,48 @@
       },
       "type": "object"
     },
+    "CustomFieldsCustomFieldModel": {
+      "properties": {
+        "defaultValue": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "label": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "integer"
+        }
+      },
+      "required": ["id", "required", "type"],
+      "type": "object"
+    },
+    "FuelConsumptionModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "refilledOn": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "volume": {
+          "type": "number"
+        }
+      },
+      "required": ["id", "refilledOn", "userId", "volume"],
+      "type": "object"
+    },
     "PublishModel": {
       "properties": {
         "url": {
@@ -7822,17 +7982,282 @@
       },
       "type": "object"
     },
+    "ReportModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "definitionId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "schedule": {
+          "$ref": "#/definitions/ReportScheduleModel"
+        },
+        "showParameters": {
+          "type": "boolean"
+        }
+      },
+      "required": ["applicationId", "definitionId", "id", "reportFormatId", "showParameters"],
+      "type": "object"
+    },
+    "ReportParameterModel": {
+      "properties": {
+        "arrayValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameterName": {
+          "type": "string"
+        },
+        "periodEnd": {
+          "type": "string"
+        },
+        "periodStart": {
+          "type": "string"
+        },
+        "timeSpan": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": ["visible"],
+      "type": "object"
+    },
+    "ReportScheduleModel": {
+      "properties": {
+        "dayOfMonth": {
+          "type": "integer"
+        },
+        "daysInWeek": {
+          "$ref": "#/definitions/DaysInWeekModel"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "hours": {
+          "type": "integer"
+        },
+        "ignoreSendingBlank": {
+          "type": "boolean"
+        },
+        "minutes": {
+          "type": "integer"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "scheduleType": {
+          "$ref": "#/definitions/ReportScheduleType"
+        },
+        "seconds": {
+          "type": "integer"
+        },
+        "transport": {
+          "$ref": "#/definitions/ReportDeliveryTransport"
+        },
+        "weekInMonth": {
+          "$ref": "#/definitions/WeekInMonthModel"
+        }
+      },
+      "required": ["dayOfMonth", "hours", "ignoreSendingBlank", "minutes", "reportFormatId", "scheduleType", "seconds", "transport"],
+      "type": "object"
+    },
+    "ReportParameterType": {
+      "type": "string",
+      "enum": ["Generic", "Array", "TimeSpan", "Daily", "Monthly", "Weekly", "Custom"]
+    },
+    "ReportDeliveryTransport": {
+      "type": "string",
+      "enum": ["Email", "FileSave", "None"]
+    },
+    "ReportScheduleType": {
+      "type": "string",
+      "enum": ["DayOfMonth", "WeeksAndDays"]
+    },
+    "WeekInMonthModel": {
+      "properties": {
+        "first": {
+          "type": "boolean"
+        },
+        "fourth": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "second": {
+          "type": "boolean"
+        },
+        "third": {
+          "type": "boolean"
+        }
+      },
+      "required": ["first", "fourth", "last", "second", "third"],
+      "type": "object"
+    },
+    "DaysInWeekModel": {
+      "properties": {
+        "friday": {
+          "type": "boolean"
+        },
+        "monday": {
+          "type": "boolean"
+        },
+        "saturday": {
+          "type": "boolean"
+        },
+        "sunday": {
+          "type": "boolean"
+        },
+        "thursday": {
+          "type": "boolean"
+        },
+        "tuesday": {
+          "type": "boolean"
+        },
+        "wednesday": {
+          "type": "boolean"
+        }
+      },
+      "required": ["friday", "monday", "saturday", "sunday", "thursday", "tuesday", "wednesday"],
+      "type": "object"
+    },
+    "RenderingCreateModel": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "reportId": {
+          "type": "integer"
+        },
+        "sendEmail": {
+          "type": "boolean"
+        }
+      },
+      "required": ["reportFormatId", "reportId", "sendEmail"],
+      "type": "object"
+    },
+    "RenderingStatusModel": {
+      "properties": {
+        "currentStep": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isReady": {
+          "type": "boolean"
+        },
+        "latestError": {
+          "type": "string"
+        },
+        "outputFile": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "percentage": {
+          "type": "integer"
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "reportId": {
+          "type": "integer"
+        },
+        "steps": {
+          "type": "integer"
+        }
+      },
+      "required": ["currentStep", "id", "isReady", "percentage", "reportFormatId", "reportId", "steps"],
+      "type": "object"
+    },
+    "ReportTemplateModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["id"],
+      "type": "object"
+    },
+    "ReportFormatModel": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        }
+      },
+      "required": ["enabled", "id"],
+      "type": "object"
+    },
     "LogoutType": {
       "type": "string",
-      "enum": [
-        "NotLogout",
-        "Device",
-        "ManualByStudent",
-        "ManualByBus",
-        "Automatic",
-        "Dangling",
-        "DoubleLogin"
-      ]
+      "enum": ["NotLogout", "Device", "ManualByStudent", "ManualByBus", "Automatic", "Dangling", "DoubleLogin"]
     },
     "PassengerModel": {
       "properties": {
@@ -7924,353 +8349,9 @@
           "type": "string"
         }
       },
-      "required": [
-        "applicationId",
-        "defaultBusId",
-        "id",
-        "latestLoginBusId",
-        "latestLoginTimestamp",
-        "latestLogoutTimestamp",
-        "latestLogoutType"
-      ],
+      "required": ["applicationId", "defaultBusId", "id", "latestLoginBusId", "latestLoginTimestamp", "latestLogoutTimestamp", "latestLogoutType"],
       "type": "object"
-    },
-    "ReportModel": {
-      "properties": {
-        "applicationId": {
-          "type": "integer"
-        },
-        "definitionId": {
-          "type": "integer"
-        },
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/ReportParameterModel"
-          }
-        },
-        "reportFormatId": {
-          "type": "integer"
-        },
-        "schedule": {
-          "$ref": "#/definitions/ReportScheduleModel"
-        },
-        "showParameters": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "applicationId",
-        "definitionId",
-        "id",
-        "reportFormatId",
-        "showParameters"
-      ],
-      "type": "object"
-    },
-    "ReportParameterModel": {
-      "properties": {
-        "arrayValues": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "parameterName": {
-          "type": "string"
-        },
-        "periodEnd": {
-          "type": "string"
-        },
-        "periodStart": {
-          "type": "string"
-        },
-        "timeSpan": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "visible": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "visible"
-      ],
-      "type": "object"
-    },
-    "ReportScheduleModel": {
-      "properties": {
-        "dayOfMonth": {
-          "type": "integer"
-        },
-        "daysInWeek": {
-          "$ref": "#/definitions/DaysInWeekModel"
-        },
-        "fileName": {
-          "type": "string"
-        },
-        "hours": {
-          "type": "integer"
-        },
-        "ignoreSendingBlank": {
-          "type": "boolean"
-        },
-        "minutes": {
-          "type": "integer"
-        },
-        "recipients": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        "reportFormatId": {
-          "type": "integer"
-        },
-        "scheduleType": {
-          "$ref": "#/definitions/ReportScheduleType"
-        },
-        "seconds": {
-          "type": "integer"
-        },
-        "transport": {
-          "$ref": "#/definitions/ReportDeliveryTransport"
-        },
-        "weekInMonth": {
-          "$ref": "#/definitions/WeekInMonthModel"
-        }
-      },
-      "required": [
-        "dayOfMonth",
-        "hours",
-        "ignoreSendingBlank",
-        "minutes",
-        "reportFormatId",
-        "scheduleType",
-        "seconds",
-        "transport"
-      ],
-      "type": "object"
-    },
-    "ReportParameterType": {
-      "type": "string",
-      "enum": [
-        "Generic",
-        "Array",
-        "TimeSpan",
-        "Daily",
-        "Monthly",
-        "Weekly",
-        "Custom"
-      ]
-    },
-    "ReportDeliveryTransport": {
-      "type": "string",
-      "enum": [
-        "Email",
-        "FileSave",
-        "None"
-      ]
-    },
-    "ReportScheduleType": {
-      "type": "string",
-      "enum": [
-        "DayOfMonth",
-        "WeeksAndDays"
-      ]
-    },
-    "WeekInMonthModel": {
-      "properties": {
-        "first": {
-          "type": "boolean"
-        },
-        "fourth": {
-          "type": "boolean"
-        },
-        "last": {
-          "type": "boolean"
-        },
-        "second": {
-          "type": "boolean"
-        },
-        "third": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "first",
-        "fourth",
-        "last",
-        "second",
-        "third"
-      ],
-      "type": "object"
-    },
-    "DaysInWeekModel": {
-      "properties": {
-        "friday": {
-          "type": "boolean"
-        },
-        "monday": {
-          "type": "boolean"
-        },
-        "saturday": {
-          "type": "boolean"
-        },
-        "sunday": {
-          "type": "boolean"
-        },
-        "thursday": {
-          "type": "boolean"
-        },
-        "tuesday": {
-          "type": "boolean"
-        },
-        "wednesday": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "friday",
-        "monday",
-        "saturday",
-        "sunday",
-        "thursday",
-        "tuesday",
-        "wednesday"
-      ],
-      "type": "object"
-    },
-    "RenderingCreateModel": {
-      "properties": {
-        "emailAddress": {
-          "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/ReportParameterModel"
-          }
-        },
-        "reportFormatId": {
-          "type": "integer"
-        },
-        "reportId": {
-          "type": "integer"
-        },
-        "sendEmail": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "reportFormatId",
-        "reportId",
-        "sendEmail"
-      ],
-      "type": "object"
-    },
-    "RenderingStatusModel": {
-      "properties": {
-        "currentStep": {
-          "type": "integer"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "isReady": {
-          "type": "boolean"
-        },
-        "latestError": {
-          "type": "string"
-        },
-        "outputFile": {
-          "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/ReportParameterModel"
-          }
-        },
-        "percentage": {
-          "type": "integer"
-        },
-        "reportFormatId": {
-          "type": "integer"
-        },
-        "reportId": {
-          "type": "integer"
-        },
-        "steps": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "currentStep",
-        "id",
-        "isReady",
-        "percentage",
-        "reportFormatId",
-        "reportId",
-        "steps"
-      ],
-      "type": "object"
-    },
-    "ReportTemplateModel": {
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "id"
-      ],
-      "type": "object"
-    },
-    "ReportFormatModel": {
-      "properties": {
-        "enabled": {
-          "type": "boolean"
-        },
-        "fileExtension": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "shortName": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "enabled",
-        "id"
-      ],
-      "type": "object"
-    }	
+    }
   },
   "securityDefinitions": {
     "ApiKey": {
@@ -8279,7 +8360,9 @@
       "in": "header"
     }
   },
-  "tags": [
+  "tags": [{
+      "name": "Plugins"
+    },
     {
       "name": "Application"
     },
@@ -8297,9 +8380,6 @@
     },
     {
       "name": "Devices"
-    },
-    {
-      "name": "TrackInfos"
     },
     {
       "name": "Tokens",
@@ -8334,17 +8414,20 @@
       "name": "Events"
     },
     {
-      "name": "Users/Jobs",
-      "description": "Operations for listing/adding/removing jobs(s) of/to/from a user"
+      "name": "Accumulator"
     },
     {
-      "name": "Routes"
+      "name": "Dispatch",
+      "description": "Operations for Dispatch plugin"
     },
     {
-      "name": "Jobs"
+      "name": "FuelConsumption"
     },
     {
       "name": "Publish"
+    },
+    {
+      "name": "Report"
     },
     {
       "name": "Passenger Manager"
