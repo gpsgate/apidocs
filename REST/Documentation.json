@@ -8848,6 +8848,9 @@
             "$ref": "#/definitions/DeviceCreateModel"
           }
         },
+        "driverID": {
+          "type": "string"
+        },
         "email": {
           "type": "string"
         },
