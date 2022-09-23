@@ -9756,20 +9756,6 @@
       ],
       "type": "object"
     },
-    "CustomFieldModel": {
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CustomFieldsCustomFieldModel": {
       "properties": {
         "defaultValue": {
