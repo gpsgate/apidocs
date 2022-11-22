@@ -9739,25 +9739,25 @@
       "type": "object"
     },
     "ApplicationTemplateModel": {
-        "properties": {
-            "created": {
-                "type": "string"
-            },
-            "description": {
-                "type": "string"
-            },
-            "id": {
-                "type": "integer"
-            },
-            "name": {
-                "type": "string"
-            }
+      "properties": {
+        "created": {
+          "type": "string"
         },
-        "required": [
-            "created",
-            "id"
-        ],
-        "type": "object"
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created",
+        "id"
+      ],
+      "type": "object"
     },
      "CustomFieldsCustomFieldModel": {
       "properties": {
