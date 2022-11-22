@@ -8433,6 +8433,9 @@
         },
         "surname": {
           "type": "string"
+        },
+        "username": {
+          "type": "string"
         }
       },
       "required": [
