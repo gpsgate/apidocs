@@ -8000,2360 +8000,2360 @@
       "parameters": []
     }
   },
-    "definitions": {
-        "DeployAction": {
-            "type": "string",
-            "enum": [
-                "None",
-                "Update",
-                "Install"
-            ]
-        },
-        "DeployStatusModel": {
-            "properties": {
-                "action": {
-                    "$ref": "#/definitions/DeployAction"
-                },
-                "currentStep": {
-                    "type": "integer"
-                },
-                "pluginId": {
-                    "type": "integer"
-                },
-                "pluginName": {
-                    "type": "string"
-                },
-                "pluginNamespace": {
-                    "type": "string"
-                },
-                "stepDescription": {
-                    "type": "string"
-                },
-                "targetVersion": {
-                    "type": "string"
-                },
-                "totalSteps": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "action",
-                "currentStep",
-                "pluginId",
-                "totalSteps"
-            ],
-            "type": "object"
-        },
-        "InstallationStatus": {
-            "type": "string",
-            "enum": [
-                "All",
-                "NotInstalled",
-                "Outdated",
-                "UpToDate"
-            ]
-        },
-        "RepositoryModel": {
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "downloadUrl": {
-                    "type": "string"
-                },
-                "homepageUrl": {
-                    "type": "string"
-                },
-                "iconUrl": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "packageVersionString": {
-                    "type": "string"
-                },
-                "platformDependencies": {
-                    "type": "string"
-                },
-                "repositoryUrl": {
-                    "type": "string"
-                },
-                "requiresValidSupport": {
-                    "type": "boolean"
-                },
-                "serverVersionString": {
-                    "type": "string"
-                },
-                "targetFramework": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "requiresValidSupport"
-            ],
-            "type": "object"
-        },
-        "PluginModel": {
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "packageVersionString": {
-                    "type": "string"
-                },
-                "repositoryUrl": {
-                    "type": "string"
-                },
-                "serverVersionString": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "PluginUpdateModel": {
-            "properties": {
-                "url": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "PluginInstallModel": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "ApplicationModel": {
-            "properties": {
-                "created": {
-                    "type": "string"
-                },
-                "culture": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "expire": {
-                    "type": "string"
-                },
-                "expired": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "isInitialized": {
-                    "type": "boolean"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "licensesUsed": {
-                    "type": "integer"
-                },
-                "maxUsers": {
-                    "type": "integer"
-                },
-                "measurement": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "timeZone": {
-                    "type": "string"
-                },
-                "userCount": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "created",
-                "expired",
-                "id",
-                "isInitialized",
-                "licensesUsed",
-                "userCount"
-            ],
-            "type": "object"
-        },
-        "ApplicationCreateModel": {
-            "properties": {
-                "adminUserId": {
-                    "type": "integer"
-                },
-                "applicationTemplateId": {
-                    "type": "integer"
-                },
-                "culture": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "expire": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "maxUsers": {
-                    "type": "integer"
-                },
-                "measurement": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "timeZone": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "adminUserId",
-                "applicationTemplateId",
-                "id"
-            ],
-            "type": "object"
-        },
-        "ApplicationEditModel": {
-            "properties": {
-                "culture": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "expire": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "maxUsers": {
-                    "type": "integer"
-                },
-                "measurement": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "timeZone": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "ViewModel": {
-            "properties": {
-                "applicationID": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "matchAllTags": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "statusFilter": {
-                    "$ref": "#/definitions/GateUserNetStatus"
-                },
-                "tagIDs": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "required": [
-                "applicationID",
-                "id",
-                "matchAllTags",
-                "statusFilter"
-            ],
-            "type": "object"
-        },
-        "GateUserNetStatus": {
-            "type": "string",
-            "enum": [
-                "Sending",
-                "Connected",
-                "Offline",
-                "NeverBeenConnected"
-            ]
-        },
-        "VariableModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "unitName": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "UserModel": {
-            "properties": {
-                "calculatedSpeed": {
-                    "type": "number"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceActivity": {
-                    "type": "string"
-                },
-                "devices": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/DeviceModel"
-                    }
-                },
-                "driverID": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "icon": {
-                    "$ref": "#/definitions/UserIconModel"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "lastTransport": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "surname": {
-                    "type": "string"
-                },
-                "trackPoint": {
-                    "$ref": "#/definitions/TrackPoint"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "userTemplateID": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "calculatedSpeed",
-                "deviceActivity",
-                "id",
-                "userTemplateID"
-            ],
-            "type": "object"
-        },
-        "UserEditModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "driverID": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "surname": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "UserCreateModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "devices": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/DeviceCreateModel"
-                    }
-                },
-                "driverID": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "surname": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "userTypeId": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "id",
-                "userTypeId"
-            ],
-            "type": "object"
-        },
-        "Velocity": {
-            "properties": {
-                "groundSpeed": {
-                    "type": "number"
-                },
-                "heading": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "groundSpeed",
-                "heading"
-            ],
-            "type": "object"
-        },
-        "Position": {
-            "properties": {
-                "altitude": {
-                    "type": "number"
-                },
-                "latitude": {
-                    "type": "number"
-                },
-                "longitude": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "altitude",
-                "latitude",
-                "longitude"
-            ],
-            "type": "object"
-        },
-        "TrackPoint": {
-            "properties": {
-                "position": {
-                    "$ref": "#/definitions/Position"
-                },
-                "uTC": {
-                    "type": "string"
-                },
-                "valid": {
-                    "type": "boolean"
-                },
-                "velocity": {
-                    "$ref": "#/definitions/Velocity"
-                }
-            },
-            "required": [
-                "uTC",
-                "valid"
-            ],
-            "type": "object"
-        },
-        "MSISDN": {
-            "properties": {
-                "raw": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "OneWireBag": {
-            "properties": {
-                "deviceDefinitionID": {
-                    "type": "integer"
-                },
-                "deviceID": {
-                    "type": "integer"
-                },
-                "oneWireID": {
-                    "type": "string"
-                },
-                "variableName": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "deviceDefinitionID",
-                "deviceID"
-            ],
-            "type": "object"
-        },
-        "DeviceModel": {
-            "properties": {
-                "aPN": {
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "deviceDefinitionID": {
-                    "type": "integer"
-                },
-                "devicePassword": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "gPRSPassword": {
-                    "type": "string"
-                },
-                "gPRSUsername": {
-                    "type": "string"
-                },
-                "hidePosition": {
-                    "type": "boolean"
-                },
-                "iD": {
-                    "type": "integer"
-                },
-                "iMEI": {
-                    "type": "string"
-                },
-                "lastIP": {
-                    "type": "string"
-                },
-                "lastPort": {
-                    "type": "integer"
-                },
-                "latitude": {
-                    "type": "number"
-                },
-                "longitude": {
-                    "type": "number"
-                },
-                "mobileNetworkID": {
-                    "type": "integer"
-                },
-                "msgFieldDictionaryID": {
-                    "type": "integer"
-                },
-                "mSISDN": {
-                    "$ref": "#/definitions/MSISDN"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "oneWireVariables": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/OneWireBag"
-                    }
-                },
-                "ownerEmail": {
-                    "type": "string"
-                },
-                "ownerID": {
-                    "type": "integer"
-                },
-                "ownerName": {
-                    "type": "string"
-                },
-                "ownerUsername": {
-                    "type": "string"
-                },
-                "profileId": {
-                    "type": "integer"
-                },
-                "protocolID": {
-                    "type": "string"
-                },
-                "protocolVersionID": {
-                    "type": "integer"
-                },
-                "proximity": {
-                    "type": "number"
-                },
-                "staticIP": {
-                    "type": "string"
-                },
-                "staticPort": {
-                    "type": "integer"
-                },
-                "timeStamp": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "created",
-                "deviceDefinitionID",
-                "hidePosition",
-                "iD",
-                "lastPort",
-                "latitude",
-                "longitude",
-                "mobileNetworkID",
-                "msgFieldDictionaryID",
-                "ownerID",
-                "profileId",
-                "protocolVersionID",
-                "proximity",
-                "staticPort",
-                "timeStamp"
-            ],
-            "type": "object"
-        },
-        "DeviceCreateModel": {
-            "properties": {
-                "deviceMapperID": {
-                    "type": "integer"
-                },
-                "deviceTypeId": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "imei": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "deviceMapperID",
-                "deviceTypeId",
-                "id"
-            ],
-            "type": "object"
-        },
-        "UserIconModel": {
-            "properties": {
-                "iconGUID": {
-                    "type": "string"
-                },
-                "iconOffsetX": {
-                    "type": "integer"
-                },
-                "iconOffsetY": {
-                    "type": "integer"
-                },
-                "rotatable": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "iconOffsetX",
-                "iconOffsetY",
-                "rotatable"
-            ],
-            "type": "object"
-        },
-        "TripInfoModel": {
-            "properties": {
-                "endTrackPoint": {
-                    "$ref": "#/definitions/TrackPoint"
-                },
-                "isIdle": {
-                    "type": "boolean"
-                },
-                "startTrackPoint": {
-                    "$ref": "#/definitions/TrackPoint"
-                },
-                "totalDistance": {
-                    "type": "number"
-                },
-                "trackInfoId": {
-                    "type": "integer"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "isIdle",
-                "totalDistance",
-                "trackInfoId",
-                "userId"
-            ],
-            "type": "object"
-        },
-        "TrackModel": {
-            "properties": {
-                "position": {
-                    "$ref": "#/definitions/Position"
-                },
-                "serverUtc": {
-                    "type": "string"
-                },
-                "trackInfoId": {
-                    "type": "integer"
-                },
-                "uTC": {
-                    "type": "string"
-                },
-                "valid": {
-                    "type": "boolean"
-                },
-                "variables": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "velocity": {
-                    "$ref": "#/definitions/Velocity"
-                }
-            },
-            "required": [
-                "serverUtc",
-                "trackInfoId",
-                "uTC",
-                "valid"
-            ],
-            "type": "object"
-        },
-        "TrackInfoModel": {
-            "properties": {
-                "boundingBox": {
-                    "$ref": "#/definitions/BoundingBox"
-                },
-                "count": {
-                    "type": "integer"
-                },
-                "endPosition": {
-                    "$ref": "#/definitions/Position"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "startPosition": {
-                    "$ref": "#/definitions/Position"
-                },
-                "totalDistance": {
-                    "type": "number"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "id",
-                "totalDistance",
-                "updated",
-                "userId"
-            ],
-            "type": "object"
-        },
-        "BoundingBox": {
-            "properties": {
-                "maxM": {
-                    "type": "number"
-                },
-                "maxTime": {
-                    "type": "string"
-                },
-                "maxX": {
-                    "type": "number"
-                },
-                "maxY": {
-                    "type": "number"
-                },
-                "maxZ": {
-                    "type": "number"
-                },
-                "minM": {
-                    "type": "number"
-                },
-                "minTime": {
-                    "type": "string"
-                },
-                "minX": {
-                    "type": "number"
-                },
-                "minY": {
-                    "type": "number"
-                },
-                "minZ": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "maxM",
-                "maxTime",
-                "maxX",
-                "maxY",
-                "maxZ",
-                "minM",
-                "minTime",
-                "minX",
-                "minY",
-                "minZ"
-            ],
-            "type": "object"
-        },
-        "UserStatusModel": {
-            "properties": {
-                "deviceActivity": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "position": {
-                    "$ref": "#/definitions/Position"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "uTC": {
-                    "type": "string"
-                },
-                "variables": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/VariableStatusModel"
-                    }
-                },
-                "velocity": {
-                    "$ref": "#/definitions/Velocity"
-                }
-            },
-            "required": [
-                "deviceActivity",
-                "id",
-                "uTC"
-            ],
-            "type": "object"
-        },
-        "VariableStatusModel": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "time": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "time"
-            ],
-            "type": "object"
-        },
-        "CommandModel": {
-            "properties": {
-                "aliasID": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "localName": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "outgoing": {
-                    "type": "boolean"
-                },
-                "special": {
-                    "type": "boolean"
-                },
-                "transport": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "aliasID",
-                "id",
-                "outgoing",
-                "special"
-            ],
-            "type": "object"
-        },
-        "CommandAddModel": {
-            "properties": {
-                "command": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "CommandStatusModel": {
-            "properties": {
-                "commandName": {
-                    "type": "string"
-                },
-                "currentStep": {
-                    "type": "integer"
-                },
-                "customState": {
-                    "type": "string"
-                },
-                "errorDescription": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "lastActivity": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "stepDescription": {
-                    "type": "string"
-                },
-                "totalSteps": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "currentStep",
-                "id",
-                "lastActivity",
-                "totalSteps"
-            ],
-            "type": "object"
-        },
-        "UserCustomFieldModel": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "AccumulatorModel": {
-            "properties": {
-                "accumulatorTypeId": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "timestamp": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer"
-                },
-                "value": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "accumulatorTypeId",
-                "id",
-                "timestamp",
-                "userId",
-                "value"
-            ],
-            "type": "object"
-        },
-        "UserTypeModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "ApplicationTrackInfoModel": {
-            "properties": {
-                "count": {
-                    "type": "integer"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "created",
-                "id",
-                "updated",
-                "userId"
-            ],
-            "type": "object"
-        },
-        "TokenModel": {
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "token": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "Credentials": {
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "ApiKey": {
-            "properties": {
-                "token": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "TagModel": {
-            "properties": {
-                "applicationId": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "usersIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "required": [
-                "applicationId",
-                "id"
-            ],
-            "type": "object"
-        },
-        "APIModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "SessionModel": {
-            "properties": {
-                "application": {
-                    "$ref": "#/definitions/SessionApplicationModel"
-                },
-                "culture": {
-                    "type": "string"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "measurement": {
-                    "type": "string"
-                },
-                "timeZone": {
-                    "type": "string"
-                },
-                "user": {
-                    "$ref": "#/definitions/SessionUserModel"
-                }
-            },
-            "type": "object"
-        },
-        "SessionApplicationModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "SessionUserModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "RoleModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "usersIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "ReverseGeocodeResult": {
-            "properties": {
-                "geocoderProviderSource": {
-                    "type": "string"
-                },
-                "location": {
-                    "$ref": "#/definitions/Location"
-                }
-            },
-            "type": "object"
-        },
-        "Location": {
-            "properties": {
-                "address": {
-                    "type": "string"
-                },
-                "administrativeAreaName": {
-                    "type": "string"
-                },
-                "cityName": {
-                    "type": "string"
-                },
-                "countryName": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "formattedResult": {
-                    "type": "string"
-                },
-                "neighborhood": {
-                    "type": "string"
-                },
-                "position": {
-                    "$ref": "#/definitions/Position"
-                },
-                "postalCodeNumber": {
-                    "type": "string"
-                },
-                "streetBox": {
-                    "type": "string"
-                },
-                "streetName": {
-                    "type": "string"
-                },
-                "streetNumber": {
-                    "type": "string"
-                },
-                "subAdministrativeAreaName": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "MessageProviderModel": {
-            "properties": {
-                "callInterval": {
-                    "type": "integer"
-                },
-                "customLong": {
-                    "type": "integer"
-                },
-                "customString": {
-                    "type": "string"
-                },
-                "defaultProvider": {
-                    "type": "boolean"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "isStarted": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "routeLabel": {
-                    "type": "string"
-                },
-                "timeout": {
-                    "type": "integer"
-                },
-                "typeID": {
-                    "type": "integer"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "callInterval",
-                "customLong",
-                "defaultProvider",
-                "enabled",
-                "id",
-                "isStarted",
-                "timeout",
-                "typeID"
-            ],
-            "type": "object"
-        },
-        "MessageProviderTypeModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "GeofenceModel": {
-            "properties": {
-                "boundingBox": {
-                    "$ref": "#/definitions/GeofenceBoundingBoxModel"
-                },
-                "circleShape": {
-                    "$ref": "#/definitions/CircleShape"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "polygonShape": {
-                    "$ref": "#/definitions/PolygonShape"
-                },
-                "routeShape": {
-                    "$ref": "#/definitions/RouteShape"
-                },
-                "shapeType": {
-                    "$ref": "#/definitions/ShapeType"
-                }
-            },
-            "required": [
-                "id",
-                "shapeType"
-            ],
-            "type": "object"
-        },
-        "Position2D": {
-            "properties": {
-                "latitude": {
-                    "type": "number"
-                },
-                "longitude": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "latitude",
-                "longitude"
-            ],
-            "type": "object"
-        },
-        "ShapeType": {
-            "type": "string",
-            "enum": [
-                "Polygon",
-                "Circle",
-                "Route"
-            ]
-        },
-        "PolygonShape": {
-            "properties": {
-                "vertices": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/Position2D"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "CircleShape": {
-            "properties": {
-                "center": {
-                    "$ref": "#/definitions/Position2D"
-                },
-                "radius": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "radius"
-            ],
-            "type": "object"
-        },
-        "RouteShape": {
-            "properties": {
-                "radius": {
-                    "type": "number"
-                },
-                "vertices": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/Position2D"
-                    }
-                }
-            },
-            "required": [
-                "radius"
-            ],
-            "type": "object"
-        },
-        "GeofenceBoundingBoxModel": {
-            "properties": {
-                "maxX": {
-                    "type": "number"
-                },
-                "maxY": {
-                    "type": "number"
-                },
-                "minX": {
-                    "type": "number"
-                },
-                "minY": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "maxX",
-                "maxY",
-                "minX",
-                "minY"
-            ],
-            "type": "object"
-        },
-        "GeofenceGroupModel": {
-            "properties": {
-                "colour": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "geofenceIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "pinned": {
-                    "type": "boolean"
-                },
-                "priority": {
-                    "type": "integer"
-                },
-                "useInGeocoding": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "id",
-                "pinned",
-                "priority",
-                "useInGeocoding"
-            ],
-            "type": "object"
-        },
-        "GeocodeResult": {
-            "properties": {
-                "geocoderProviderSource": {
-                    "type": "string"
-                },
-                "locations": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/Location"
-                    }
-                },
-                "query": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "EventModel": {
-            "properties": {
-                "applicationId": {
-                    "type": "integer"
-                },
-                "arguments": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/Argument"
-                    }
-                },
-                "boundingBox": {
-                    "$ref": "#/definitions/BoundingBox"
-                },
-                "closed": {
-                    "type": "boolean"
-                },
-                "closedByUser": {
-                    "type": "string"
-                },
-                "closedTimeStamp": {
-                    "type": "string"
-                },
-                "comment": {
-                    "type": "string"
-                },
-                "endPosition": {
-                    "$ref": "#/definitions/Position"
-                },
-                "eventStage": {
-                    "type": "integer"
-                },
-                "expressionEvaluatorId": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "ongoing": {
-                    "type": "boolean"
-                },
-                "ruleName": {
-                    "type": "string"
-                },
-                "startPosition": {
-                    "$ref": "#/definitions/Position"
-                },
-                "supportUi": {
-                    "type": "boolean"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "applicationId",
-                "closed",
-                "closedTimeStamp",
-                "eventStage",
-                "expressionEvaluatorId",
-                "id",
-                "ongoing",
-                "supportUi",
-                "userId"
-            ],
-            "type": "object"
-        },
-        "Argument": {
-            "properties": {
-                "argumentID": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "eventID": {
-                    "type": "integer"
-                },
-                "sIValue": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "variable": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "argumentID",
-                "eventID"
-            ],
-            "type": "object"
-        },
-        "EventRuleModel": {
-            "properties": {
-                "applicationID": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "disabled": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "tagIDs": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "required": [
-                "applicationID",
-                "disabled",
-                "id"
-            ],
-            "type": "object"
-        },
-        "DeviceTypeModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "DeviceMapperModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "AccumulatorTypeModel": {
-            "properties": {
-                "applicationId": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "applicationId",
-                "id"
-            ],
-            "type": "object"
-        },
-        "ApplicationTemplateModel": {
-            "properties": {
-                "created": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "created",
-                "id"
-            ],
-            "type": "object"
-        },
-        "CustomFieldsCustomFieldModel": {
-            "properties": {
-                "defaultValue": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "objectType": {
-                    "type": "string"
-                },
-                "required": {
-                    "type": "boolean"
-                },
-                "type": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "id",
-                "required",
-                "type"
-            ],
-            "type": "object"
-        },
-        "FuelConsumptionModel": {
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "refilledOn": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer"
-                },
-                "volume": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "id",
-                "refilledOn",
-                "userId",
-                "volume"
-            ],
-            "type": "object"
-        },
-        "CustomFieldsModel": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "POICategoryModel": {
-            "properties": {
-                "color": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "geocodingAddressOptions": {
-                    "$ref": "#/definitions/GeocodingAddressOptions"
-                },
-                "geocodingTolerance": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "maxZoom": {
-                    "type": "integer"
-                },
-                "minZoom": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "geocodingAddressOptions",
-                "geocodingTolerance",
-                "id",
-                "maxZoom",
-                "minZoom"
-            ],
-            "type": "object"
-        },
-        "GeocodingAddressOptions": {
-            "type": "string",
-            "enum": [
-                "None",
-                "Bearing",
-                "Distance",
-                "BearingAndDistance"
-            ]
-        },
-        "POIModel": {
-            "properties": {
-                "categoryId": {
-                    "type": "integer"
-                },
-                "customFieldsValue": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "position": {
-                    "$ref": "#/definitions/Position"
-                }
-            },
-            "required": [
-                "categoryId",
-                "id"
-            ],
-            "type": "object"
-        },
-        "PublishModel": {
-            "properties": {
-                "url": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "ReportModel": {
-            "properties": {
-                "applicationId": {
-                    "type": "integer"
-                },
-                "definitionId": {
-                    "type": "integer"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parameters": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/ReportParameterModel"
-                    }
-                },
-                "reportFormatId": {
-                    "type": "integer"
-                },
-                "schedule": {
-                    "$ref": "#/definitions/ReportScheduleModel"
-                },
-                "showParameters": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "applicationId",
-                "definitionId",
-                "id",
-                "reportFormatId",
-                "showParameters"
-            ],
-            "type": "object"
-        },
-        "ReportParameterModel": {
-            "properties": {
-                "arrayValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "parameterName": {
-                    "type": "string"
-                },
-                "periodEnd": {
-                    "type": "string"
-                },
-                "periodStart": {
-                    "type": "string"
-                },
-                "timeSpan": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "visible": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "visible"
-            ],
-            "type": "object"
-        },
-        "ReportScheduleModel": {
-            "properties": {
-                "dayOfMonth": {
-                    "type": "integer"
-                },
-                "daysInWeek": {
-                    "$ref": "#/definitions/DaysInWeekModel"
-                },
-                "fileName": {
-                    "type": "string"
-                },
-                "hours": {
-                    "type": "integer"
-                },
-                "ignoreSendingBlank": {
-                    "type": "boolean"
-                },
-                "minutes": {
-                    "type": "integer"
-                },
-                "recipients": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "reportFormatId": {
-                    "type": "integer"
-                },
-                "scheduleType": {
-                    "$ref": "#/definitions/ReportScheduleType"
-                },
-                "seconds": {
-                    "type": "integer"
-                },
-                "transport": {
-                    "$ref": "#/definitions/ReportDeliveryTransport"
-                },
-                "weekInMonth": {
-                    "$ref": "#/definitions/WeekInMonthModel"
-                }
-            },
-            "required": [
-                "dayOfMonth",
-                "hours",
-                "ignoreSendingBlank",
-                "minutes",
-                "reportFormatId",
-                "scheduleType",
-                "seconds",
-                "transport"
-            ],
-            "type": "object"
-        },
-        "ReportParameterType": {
-            "type": "string",
-            "enum": [
-                "Generic",
-                "Array",
-                "TimeSpan",
-                "Daily",
-                "Monthly",
-                "Weekly",
-                "Custom"
-            ]
-        },
-        "ReportDeliveryTransport": {
-            "type": "string",
-            "enum": [
-                "Email",
-                "FileSave",
-                "None"
-            ]
-        },
-        "ReportScheduleType": {
-            "type": "string",
-            "enum": [
-                "DayOfMonth",
-                "WeeksAndDays"
-            ]
-        },
-        "WeekInMonthModel": {
-            "properties": {
-                "first": {
-                    "type": "boolean"
-                },
-                "fourth": {
-                    "type": "boolean"
-                },
-                "last": {
-                    "type": "boolean"
-                },
-                "second": {
-                    "type": "boolean"
-                },
-                "third": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "first",
-                "fourth",
-                "last",
-                "second",
-                "third"
-            ],
-            "type": "object"
-        },
-        "DaysInWeekModel": {
-            "properties": {
-                "friday": {
-                    "type": "boolean"
-                },
-                "monday": {
-                    "type": "boolean"
-                },
-                "saturday": {
-                    "type": "boolean"
-                },
-                "sunday": {
-                    "type": "boolean"
-                },
-                "thursday": {
-                    "type": "boolean"
-                },
-                "tuesday": {
-                    "type": "boolean"
-                },
-                "wednesday": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "friday",
-                "monday",
-                "saturday",
-                "sunday",
-                "thursday",
-                "tuesday",
-                "wednesday"
-            ],
-            "type": "object"
-        },
-        "RenderingCreateModel": {
-            "properties": {
-                "emailAddress": {
-                    "type": "string"
-                },
-                "parameters": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/ReportParameterModel"
-                    }
-                },
-                "reportFormatId": {
-                    "type": "integer"
-                },
-                "reportId": {
-                    "type": "integer"
-                },
-                "sendEmail": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "reportFormatId",
-                "reportId",
-                "sendEmail"
-            ],
-            "type": "object"
-        },
-        "RenderingStatusModel": {
-            "properties": {
-                "currentStep": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "isReady": {
-                    "type": "boolean"
-                },
-                "latestError": {
-                    "type": "string"
-                },
-                "outputFile": {
-                    "type": "string"
-                },
-                "parameters": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "$ref": "#/definitions/ReportParameterModel"
-                    }
-                },
-                "percentage": {
-                    "type": "integer"
-                },
-                "reportFormatId": {
-                    "type": "integer"
-                },
-                "reportId": {
-                    "type": "integer"
-                },
-                "steps": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "currentStep",
-                "id",
-                "isReady",
-                "percentage",
-                "reportFormatId",
-                "reportId",
-                "steps"
-            ],
-            "type": "object"
-        },
-        "ReportTemplateModel": {
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "type": "object"
-        },
-        "ReportFormatModel": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
-                "fileExtension": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "shortName": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "enabled",
-                "id"
-            ],
-            "type": "object"
-        },
-        "LogoutType": {
-            "type": "string",
-            "enum": [
-                "NotLogout",
-                "Device",
-                "ManualByStudent",
-                "ManualByBus",
-                "Automatic",
-                "Dangling",
-                "DoubleLogin"
-            ]
-        },
-        "PassengerModel": {
-            "properties": {
-                "applicationId": {
-                    "type": "integer"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "defaultBusId": {
-                    "type": "integer"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "firstGuardianEmail": {
-                    "type": "string"
-                },
-                "firstGuardianFirstname": {
-                    "type": "string"
-                },
-                "firstGuardianLastname": {
-                    "type": "string"
-                },
-                "firstGuardianPhone": {
-                    "type": "string"
-                },
-                "firstname": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "lastname": {
-                    "type": "string"
-                },
-                "latestLoginBusId": {
-                    "type": "integer"
-                },
-                "latestLoginTimestamp": {
-                    "type": "string"
-                },
-                "latestLogoutTimestamp": {
-                    "type": "string"
-                },
-                "latestLogoutType": {
-                    "$ref": "#/definitions/LogoutType"
-                },
-                "passengerIdentifier": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "picture": {
-                    "type": "string"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "schoolEmail": {
-                    "type": "string"
-                },
-                "schoolName": {
-                    "type": "string"
-                },
-                "schoolPhone": {
-                    "type": "string"
-                },
-                "secondGuardianEmail": {
-                    "type": "string"
-                },
-                "secondGuardianFirstname": {
-                    "type": "string"
-                },
-                "secondGuardianLastname": {
-                    "type": "string"
-                },
-                "secondGuardianPhone": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "streetAddress": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "applicationId",
-                "defaultBusId",
-                "id",
-                "latestLoginBusId",
-                "latestLoginTimestamp",
-                "latestLogoutTimestamp",
-                "latestLogoutType"
-            ],
-            "type": "object"
-        }
+  "definitions": {
+    "DeployAction": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Update",
+        "Install"
+      ]
     },
+    "DeployStatusModel": {
+      "properties": {
+        "action": {
+          "$ref": "#/definitions/DeployAction"
+        },
+        "currentStep": {
+          "type": "integer"
+        },
+        "pluginId": {
+          "type": "integer"
+        },
+        "pluginName": {
+          "type": "string"
+        },
+        "pluginNamespace": {
+          "type": "string"
+        },
+        "stepDescription": {
+          "type": "string"
+        },
+        "targetVersion": {
+          "type": "string"
+        },
+        "totalSteps": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "action",
+        "currentStep",
+        "pluginId",
+        "totalSteps"
+      ],
+      "type": "object"
+    },
+    "InstallationStatus": {
+      "type": "string",
+      "enum": [
+        "All",
+        "NotInstalled",
+        "Outdated",
+        "UpToDate"
+      ]
+    },
+    "RepositoryModel": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "downloadUrl": {
+          "type": "string"
+        },
+        "homepageUrl": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "packageVersionString": {
+          "type": "string"
+        },
+        "platformDependencies": {
+          "type": "string"
+        },
+        "repositoryUrl": {
+          "type": "string"
+        },
+        "requiresValidSupport": {
+          "type": "boolean"
+        },
+        "serverVersionString": {
+          "type": "string"
+        },
+        "targetFramework": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "requiresValidSupport"
+      ],
+      "type": "object"
+    },
+    "PluginModel": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "packageVersionString": {
+          "type": "string"
+        },
+        "repositoryUrl": {
+          "type": "string"
+        },
+        "serverVersionString": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "PluginUpdateModel": {
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PluginInstallModel": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationModel": {
+      "properties": {
+        "created": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "expire": {
+          "type": "string"
+        },
+        "expired": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isInitialized": {
+          "type": "boolean"
+        },
+        "language": {
+          "type": "string"
+        },
+        "licensesUsed": {
+          "type": "integer"
+        },
+        "maxUsers": {
+          "type": "integer"
+        },
+        "measurement": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "userCount": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "created",
+        "expired",
+        "id",
+        "isInitialized",
+        "licensesUsed",
+        "userCount"
+      ],
+      "type": "object"
+    },
+    "ApplicationCreateModel": {
+      "properties": {
+        "adminUserId": {
+          "type": "integer"
+        },
+        "applicationTemplateId": {
+          "type": "integer"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "expire": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "maxUsers": {
+          "type": "integer"
+        },
+        "measurement": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "adminUserId",
+        "applicationTemplateId",
+        "id"
+      ],
+      "type": "object"
+    },
+    "ApplicationEditModel": {
+      "properties": {
+        "culture": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "expire": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "maxUsers": {
+          "type": "integer"
+        },
+        "measurement": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "ViewModel": {
+      "properties": {
+        "applicationID": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "matchAllTags": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "statusFilter": {
+          "$ref": "#/definitions/GateUserNetStatus"
+        },
+        "tagIDs": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "applicationID",
+        "id",
+        "matchAllTags",
+        "statusFilter"
+      ],
+      "type": "object"
+    },
+    "GateUserNetStatus": {
+      "type": "string",
+      "enum": [
+        "Sending",
+        "Connected",
+        "Offline",
+        "NeverBeenConnected"
+      ]
+    },
+    "VariableModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "unitName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserModel": {
+      "properties": {
+        "calculatedSpeed": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "deviceActivity": {
+          "type": "string"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DeviceModel"
+          }
+        },
+        "driverID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "#/definitions/UserIconModel"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "lastTransport": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "trackPoint": {
+          "$ref": "#/definitions/TrackPoint"
+        },
+        "username": {
+          "type": "string"
+        },
+        "userTemplateID": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "calculatedSpeed",
+        "deviceActivity",
+        "id",
+        "userTemplateID"
+      ],
+      "type": "object"
+    },
+    "UserEditModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "driverID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "UserCreateModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/DeviceCreateModel"
+          }
+        },
+        "driverID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "userTypeId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "userTypeId"
+      ],
+      "type": "object"
+    },
+    "Velocity": {
+      "properties": {
+        "groundSpeed": {
+          "type": "number"
+        },
+        "heading": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "groundSpeed",
+        "heading"
+      ],
+      "type": "object"
+    },
+    "Position": {
+      "properties": {
+        "altitude": {
+          "type": "number"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "altitude",
+        "latitude",
+        "longitude"
+      ],
+      "type": "object"
+    },
+    "TrackPoint": {
+      "properties": {
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "uTC": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "velocity": {
+          "$ref": "#/definitions/Velocity"
+        }
+      },
+      "required": [
+        "uTC",
+        "valid"
+      ],
+      "type": "object"
+    },
+    "MSISDN": {
+      "properties": {
+        "raw": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneWireBag": {
+      "properties": {
+        "deviceDefinitionID": {
+          "type": "integer"
+        },
+        "deviceID": {
+          "type": "integer"
+        },
+        "oneWireID": {
+          "type": "string"
+        },
+        "variableName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deviceDefinitionID",
+        "deviceID"
+      ],
+      "type": "object"
+    },
+    "DeviceModel": {
+      "properties": {
+        "aPN": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "deviceDefinitionID": {
+          "type": "integer"
+        },
+        "devicePassword": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "gPRSPassword": {
+          "type": "string"
+        },
+        "gPRSUsername": {
+          "type": "string"
+        },
+        "hidePosition": {
+          "type": "boolean"
+        },
+        "iD": {
+          "type": "integer"
+        },
+        "iMEI": {
+          "type": "string"
+        },
+        "lastIP": {
+          "type": "string"
+        },
+        "lastPort": {
+          "type": "integer"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "mobileNetworkID": {
+          "type": "integer"
+        },
+        "msgFieldDictionaryID": {
+          "type": "integer"
+        },
+        "mSISDN": {
+          "$ref": "#/definitions/MSISDN"
+        },
+        "name": {
+          "type": "string"
+        },
+        "oneWireVariables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/OneWireBag"
+          }
+        },
+        "ownerEmail": {
+          "type": "string"
+        },
+        "ownerID": {
+          "type": "integer"
+        },
+        "ownerName": {
+          "type": "string"
+        },
+        "ownerUsername": {
+          "type": "string"
+        },
+        "profileId": {
+          "type": "integer"
+        },
+        "protocolID": {
+          "type": "string"
+        },
+        "protocolVersionID": {
+          "type": "integer"
+        },
+        "proximity": {
+          "type": "number"
+        },
+        "staticIP": {
+          "type": "string"
+        },
+        "staticPort": {
+          "type": "integer"
+        },
+        "timeStamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created",
+        "deviceDefinitionID",
+        "hidePosition",
+        "iD",
+        "lastPort",
+        "latitude",
+        "longitude",
+        "mobileNetworkID",
+        "msgFieldDictionaryID",
+        "ownerID",
+        "profileId",
+        "protocolVersionID",
+        "proximity",
+        "staticPort",
+        "timeStamp"
+      ],
+      "type": "object"
+    },
+    "DeviceCreateModel": {
+      "properties": {
+        "deviceMapperID": {
+          "type": "integer"
+        },
+        "deviceTypeId": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "imei": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deviceMapperID",
+        "deviceTypeId",
+        "id"
+      ],
+      "type": "object"
+    },
+    "UserIconModel": {
+      "properties": {
+        "iconGUID": {
+          "type": "string"
+        },
+        "iconOffsetX": {
+          "type": "integer"
+        },
+        "iconOffsetY": {
+          "type": "integer"
+        },
+        "rotatable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "iconOffsetX",
+        "iconOffsetY",
+        "rotatable"
+      ],
+      "type": "object"
+    },
+    "TripInfoModel": {
+      "properties": {
+        "endTrackPoint": {
+          "$ref": "#/definitions/TrackPoint"
+        },
+        "isIdle": {
+          "type": "boolean"
+        },
+        "startTrackPoint": {
+          "$ref": "#/definitions/TrackPoint"
+        },
+        "totalDistance": {
+          "type": "number"
+        },
+        "trackInfoId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "isIdle",
+        "totalDistance",
+        "trackInfoId",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "TrackModel": {
+      "properties": {
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "serverUtc": {
+          "type": "string"
+        },
+        "trackInfoId": {
+          "type": "integer"
+        },
+        "uTC": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "velocity": {
+          "$ref": "#/definitions/Velocity"
+        }
+      },
+      "required": [
+        "serverUtc",
+        "trackInfoId",
+        "uTC",
+        "valid"
+      ],
+      "type": "object"
+    },
+    "TrackInfoModel": {
+      "properties": {
+        "boundingBox": {
+          "$ref": "#/definitions/BoundingBox"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "endPosition": {
+          "$ref": "#/definitions/Position"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "startPosition": {
+          "$ref": "#/definitions/Position"
+        },
+        "totalDistance": {
+          "type": "number"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "id",
+        "totalDistance",
+        "updated",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "BoundingBox": {
+      "properties": {
+        "maxM": {
+          "type": "number"
+        },
+        "maxTime": {
+          "type": "string"
+        },
+        "maxX": {
+          "type": "number"
+        },
+        "maxY": {
+          "type": "number"
+        },
+        "maxZ": {
+          "type": "number"
+        },
+        "minM": {
+          "type": "number"
+        },
+        "minTime": {
+          "type": "string"
+        },
+        "minX": {
+          "type": "number"
+        },
+        "minY": {
+          "type": "number"
+        },
+        "minZ": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "maxM",
+        "maxTime",
+        "maxX",
+        "maxY",
+        "maxZ",
+        "minM",
+        "minTime",
+        "minX",
+        "minY",
+        "minZ"
+      ],
+      "type": "object"
+    },
+    "UserStatusModel": {
+      "properties": {
+        "deviceActivity": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "username": {
+          "type": "string"
+        },
+        "uTC": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/VariableStatusModel"
+          }
+        },
+        "velocity": {
+          "$ref": "#/definitions/Velocity"
+        }
+      },
+      "required": [
+        "deviceActivity",
+        "id",
+        "uTC"
+      ],
+      "type": "object"
+    },
+    "VariableStatusModel": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "time"
+      ],
+      "type": "object"
+    },
+    "CommandModel": {
+      "properties": {
+        "aliasID": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "localName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "outgoing": {
+          "type": "boolean"
+        },
+        "special": {
+          "type": "boolean"
+        },
+        "transport": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "aliasID",
+        "id",
+        "outgoing",
+        "special"
+      ],
+      "type": "object"
+    },
+    "CommandAddModel": {
+      "properties": {
+        "command": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommandStatusModel": {
+      "properties": {
+        "commandName": {
+          "type": "string"
+        },
+        "currentStep": {
+          "type": "integer"
+        },
+        "customState": {
+          "type": "string"
+        },
+        "errorDescription": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "lastActivity": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stepDescription": {
+          "type": "string"
+        },
+        "totalSteps": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currentStep",
+        "id",
+        "lastActivity",
+        "totalSteps"
+      ],
+      "type": "object"
+    },
+    "UserCustomFieldModel": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccumulatorModel": {
+      "properties": {
+        "accumulatorTypeId": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "accumulatorTypeId",
+        "id",
+        "timestamp",
+        "userId",
+        "value"
+      ],
+      "type": "object"
+    },
+    "UserTypeModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "ApplicationTrackInfoModel": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "created": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "created",
+        "id",
+        "updated",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "TokenModel": {
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Credentials": {
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApiKey": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TagModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "usersIds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "applicationId",
+        "id"
+      ],
+      "type": "object"
+    },
+    "APIModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "SessionModel": {
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/SessionApplicationModel"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "measurement": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/SessionUserModel"
+        }
+      },
+      "type": "object"
+    },
+    "SessionApplicationModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "SessionUserModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "RoleModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "usersIds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "ReverseGeocodeResult": {
+      "properties": {
+        "geocoderProviderSource": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "administrativeAreaName": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "formattedResult": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        },
+        "postalCodeNumber": {
+          "type": "string"
+        },
+        "streetBox": {
+          "type": "string"
+        },
+        "streetName": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "subAdministrativeAreaName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MessageProviderModel": {
+      "properties": {
+        "callInterval": {
+          "type": "integer"
+        },
+        "customLong": {
+          "type": "integer"
+        },
+        "customString": {
+          "type": "string"
+        },
+        "defaultProvider": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isStarted": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "routeLabel": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "integer"
+        },
+        "typeID": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "callInterval",
+        "customLong",
+        "defaultProvider",
+        "enabled",
+        "id",
+        "isStarted",
+        "timeout",
+        "typeID"
+      ],
+      "type": "object"
+    },
+    "MessageProviderTypeModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "GeofenceModel": {
+      "properties": {
+        "boundingBox": {
+          "$ref": "#/definitions/GeofenceBoundingBoxModel"
+        },
+        "circleShape": {
+          "$ref": "#/definitions/CircleShape"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "polygonShape": {
+          "$ref": "#/definitions/PolygonShape"
+        },
+        "routeShape": {
+          "$ref": "#/definitions/RouteShape"
+        },
+        "shapeType": {
+          "$ref": "#/definitions/ShapeType"
+        }
+      },
+      "required": [
+        "id",
+        "shapeType"
+      ],
+      "type": "object"
+    },
+    "Position2D": {
+      "properties": {
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "type": "object"
+    },
+    "ShapeType": {
+      "type": "string",
+      "enum": [
+        "Polygon",
+        "Circle",
+        "Route"
+      ]
+    },
+    "PolygonShape": {
+      "properties": {
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Position2D"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "CircleShape": {
+      "properties": {
+        "center": {
+          "$ref": "#/definitions/Position2D"
+        },
+        "radius": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "radius"
+      ],
+      "type": "object"
+    },
+    "RouteShape": {
+      "properties": {
+        "radius": {
+          "type": "number"
+        },
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Position2D"
+          }
+        }
+      },
+      "required": [
+        "radius"
+      ],
+      "type": "object"
+    },
+    "GeofenceBoundingBoxModel": {
+      "properties": {
+        "maxX": {
+          "type": "number"
+        },
+        "maxY": {
+          "type": "number"
+        },
+        "minX": {
+          "type": "number"
+        },
+        "minY": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "maxX",
+        "maxY",
+        "minX",
+        "minY"
+      ],
+      "type": "object"
+    },
+    "GeofenceGroupModel": {
+      "properties": {
+        "colour": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "geofenceIds": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pinned": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "useInGeocoding": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "pinned",
+        "priority",
+        "useInGeocoding"
+      ],
+      "type": "object"
+    },
+    "GeocodeResult": {
+      "properties": {
+        "geocoderProviderSource": {
+          "type": "string"
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Location"
+          }
+        },
+        "query": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EventModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Argument"
+          }
+        },
+        "boundingBox": {
+          "$ref": "#/definitions/BoundingBox"
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "closedByUser": {
+          "type": "string"
+        },
+        "closedTimeStamp": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "endPosition": {
+          "$ref": "#/definitions/Position"
+        },
+        "eventStage": {
+          "type": "integer"
+        },
+        "expressionEvaluatorId": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "ongoing": {
+          "type": "boolean"
+        },
+        "ruleName": {
+          "type": "string"
+        },
+        "startPosition": {
+          "$ref": "#/definitions/Position"
+        },
+        "supportUi": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "applicationId",
+        "closed",
+        "closedTimeStamp",
+        "eventStage",
+        "expressionEvaluatorId",
+        "id",
+        "ongoing",
+        "supportUi",
+        "userId"
+      ],
+      "type": "object"
+    },
+    "Argument": {
+      "properties": {
+        "argumentID": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "eventID": {
+          "type": "integer"
+        },
+        "sIValue": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "variable": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "argumentID",
+        "eventID"
+      ],
+      "type": "object"
+    },
+    "EventRuleModel": {
+      "properties": {
+        "applicationID": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tagIDs": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "applicationID",
+        "disabled",
+        "id"
+      ],
+      "type": "object"
+    },
+    "DeviceTypeModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "DeviceMapperModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "AccumulatorTypeModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicationId",
+        "id"
+      ],
+      "type": "object"
+    },
+    "ApplicationTemplateModel": {
+        "properties": {
+            "created": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "id": {
+                "type": "integer"
+            },
+            "name": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "created",
+            "id"
+        ],
+        "type": "object"
+    },
+     "CustomFieldsCustomFieldModel": {
+      "properties": {
+        "defaultValue": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "label": {
+          "type": "string"
+        },
+        "objectType": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "required",
+        "type"
+      ],
+      "type": "object"
+    },
+    "FuelConsumptionModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "refilledOn": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "volume": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "refilledOn",
+        "userId",
+        "volume"
+      ],
+      "type": "object"
+    },
+    "CustomFieldsModel": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "POICategoryModel": {
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "geocodingAddressOptions": {
+          "$ref": "#/definitions/GeocodingAddressOptions"
+        },
+        "geocodingTolerance": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "maxZoom": {
+          "type": "integer"
+        },
+        "minZoom": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "geocodingAddressOptions",
+        "geocodingTolerance",
+        "id",
+        "maxZoom",
+        "minZoom"
+      ],
+      "type": "object"
+    },
+    "GeocodingAddressOptions": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Bearing",
+        "Distance",
+        "BearingAndDistance"
+      ]
+    },
+    "POIModel": {
+      "properties": {
+        "categoryId": {
+          "type": "integer"
+        },
+        "customFieldsValue": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/definitions/Position"
+        }
+      },
+      "required": [
+        "categoryId",
+        "id"
+      ],
+      "type": "object"
+    },
+    "PublishModel": {
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "definitionId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "schedule": {
+          "$ref": "#/definitions/ReportScheduleModel"
+        },
+        "showParameters": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "applicationId",
+        "definitionId",
+        "id",
+        "reportFormatId",
+        "showParameters"
+      ],
+      "type": "object"
+    },
+    "ReportParameterModel": {
+      "properties": {
+        "arrayValues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameterName": {
+          "type": "string"
+        },
+        "periodEnd": {
+          "type": "string"
+        },
+        "periodStart": {
+          "type": "string"
+        },
+        "timeSpan": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "visible"
+      ],
+      "type": "object"
+    },
+    "ReportScheduleModel": {
+      "properties": {
+        "dayOfMonth": {
+          "type": "integer"
+        },
+        "daysInWeek": {
+          "$ref": "#/definitions/DaysInWeekModel"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "hours": {
+          "type": "integer"
+        },
+        "ignoreSendingBlank": {
+          "type": "boolean"
+        },
+        "minutes": {
+          "type": "integer"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "scheduleType": {
+          "$ref": "#/definitions/ReportScheduleType"
+        },
+        "seconds": {
+          "type": "integer"
+        },
+        "transport": {
+          "$ref": "#/definitions/ReportDeliveryTransport"
+        },
+        "weekInMonth": {
+          "$ref": "#/definitions/WeekInMonthModel"
+        }
+      },
+      "required": [
+        "dayOfMonth",
+        "hours",
+        "ignoreSendingBlank",
+        "minutes",
+        "reportFormatId",
+        "scheduleType",
+        "seconds",
+        "transport"
+      ],
+      "type": "object"
+    },
+    "ReportParameterType": {
+      "type": "string",
+      "enum": [
+        "Generic",
+        "Array",
+        "TimeSpan",
+        "Daily",
+        "Monthly",
+        "Weekly",
+        "Custom"
+      ]
+    },
+    "ReportDeliveryTransport": {
+      "type": "string",
+      "enum": [
+        "Email",
+        "FileSave",
+        "None"
+      ]
+    },
+    "ReportScheduleType": {
+      "type": "string",
+      "enum": [
+        "DayOfMonth",
+        "WeeksAndDays"
+      ]
+    },
+    "WeekInMonthModel": {
+      "properties": {
+        "first": {
+          "type": "boolean"
+        },
+        "fourth": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "second": {
+          "type": "boolean"
+        },
+        "third": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "first",
+        "fourth",
+        "last",
+        "second",
+        "third"
+      ],
+      "type": "object"
+    },
+    "DaysInWeekModel": {
+      "properties": {
+        "friday": {
+          "type": "boolean"
+        },
+        "monday": {
+          "type": "boolean"
+        },
+        "saturday": {
+          "type": "boolean"
+        },
+        "sunday": {
+          "type": "boolean"
+        },
+        "thursday": {
+          "type": "boolean"
+        },
+        "tuesday": {
+          "type": "boolean"
+        },
+        "wednesday": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "friday",
+        "monday",
+        "saturday",
+        "sunday",
+        "thursday",
+        "tuesday",
+        "wednesday"
+      ],
+      "type": "object"
+    },
+    "RenderingCreateModel": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "reportId": {
+          "type": "integer"
+        },
+        "sendEmail": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "reportFormatId",
+        "reportId",
+        "sendEmail"
+      ],
+      "type": "object"
+    },
+    "RenderingStatusModel": {
+      "properties": {
+        "currentStep": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isReady": {
+          "type": "boolean"
+        },
+        "latestError": {
+          "type": "string"
+        },
+        "outputFile": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ReportParameterModel"
+          }
+        },
+        "percentage": {
+          "type": "integer"
+        },
+        "reportFormatId": {
+          "type": "integer"
+        },
+        "reportId": {
+          "type": "integer"
+        },
+        "steps": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currentStep",
+        "id",
+        "isReady",
+        "percentage",
+        "reportFormatId",
+        "reportId",
+        "steps"
+      ],
+      "type": "object"
+    },
+    "ReportTemplateModel": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "ReportFormatModel": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "id"
+      ],
+      "type": "object"
+    },
+    "LogoutType": {
+      "type": "string",
+      "enum": [
+        "NotLogout",
+        "Device",
+        "ManualByStudent",
+        "ManualByBus",
+        "Automatic",
+        "Dangling",
+        "DoubleLogin"
+      ]
+    },
+    "PassengerModel": {
+      "properties": {
+        "applicationId": {
+          "type": "integer"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "defaultBusId": {
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstGuardianEmail": {
+          "type": "string"
+        },
+        "firstGuardianFirstname": {
+          "type": "string"
+        },
+        "firstGuardianLastname": {
+          "type": "string"
+        },
+        "firstGuardianPhone": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "latestLoginBusId": {
+          "type": "integer"
+        },
+        "latestLoginTimestamp": {
+          "type": "string"
+        },
+        "latestLogoutTimestamp": {
+          "type": "string"
+        },
+        "latestLogoutType": {
+          "$ref": "#/definitions/LogoutType"
+        },
+        "passengerIdentifier": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "schoolEmail": {
+          "type": "string"
+        },
+        "schoolName": {
+          "type": "string"
+        },
+        "schoolPhone": {
+          "type": "string"
+        },
+        "secondGuardianEmail": {
+          "type": "string"
+        },
+        "secondGuardianFirstname": {
+          "type": "string"
+        },
+        "secondGuardianLastname": {
+          "type": "string"
+        },
+        "secondGuardianPhone": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "streetAddress": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicationId",
+        "defaultBusId",
+        "id",
+        "latestLoginBusId",
+        "latestLoginTimestamp",
+        "latestLogoutTimestamp",
+        "latestLogoutType"
+      ],
+      "type": "object"
+    }
+  },
   "securityDefinitions": {
     "ApiKey": {
       "type": "apiKey",
