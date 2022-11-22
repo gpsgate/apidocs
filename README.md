@@ -3,7 +3,6 @@ Apidocs is a project containing Open API documentation for GpsGate public APIs (
 
 # Generate REST API
 1. Install the following plugins:
-    - Dispatch
     - Fuel Consumption
     - Indoor Positioning System
     - Publish

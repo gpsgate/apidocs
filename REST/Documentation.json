@@ -8433,6 +8433,9 @@
         },
         "surname": {
           "type": "string"
+        },
+        "username": {
+          "type": "string"
         }
       },
       "required": [
@@ -9753,34 +9756,6 @@
       "required": [
         "created",
         "id"
-      ],
-      "type": "object"
-    },
-    "CustomFieldsCustomFieldModel": {
-      "properties": {
-        "defaultValue": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "label": {
-          "type": "string"
-        },
-        "objectType": {
-          "type": "string"
-        },
-        "required": {
-          "type": "boolean"
-        },
-        "type": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "id",
-        "required",
-        "type"
       ],
       "type": "object"
     },
