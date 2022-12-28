@@ -5387,7 +5387,14 @@
             "name": "UserId",
             "in": "query",
             "description": "The user id for which you want to get the events",
-            "required": true,
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "UserTagId",
+            "in": "query",
+            "description": "The user tag id for which you want to get the events",
+            "required": false,
             "type": "integer"
           },
           {
@@ -7073,6 +7080,71 @@
       },
       "parameters": []
     },
+    "/applications/{applicationid:int}/users/{userid:int}/publishlinks": {
+      "get": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Get all active publish links for a user",
+        "description": "",
+        "operationId": "GetPublishLinks",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/PublishModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
     "/applications/{applicationid:int}/users/{userid:int}/publish": {
       "get": {
         "tags": [
@@ -7080,7 +7152,7 @@
         ],
         "summary": "Get a publish link for a user",
         "description": "",
-        "operationId": "GetPublishByPublishid",
+        "operationId": "GetPublishByUrlHash",
         "parameters": [
           {
             "name": "applicationid:int",
@@ -7138,6 +7210,68 @@
             "schema": {
               "$ref": "#/definitions/PublishModel"
             }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/{userid:int}/publish/{urlhash:string}": {
+      "delete": {
+        "tags": [
+          "Publish"
+        ],
+        "summary": "Invalidates active publish link for a user",
+        "description": "",
+        "operationId": "DeletePublishByUrlHash",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "urlhash:string",
+            "in": "path",
+            "description": "Tiny URL hash you want to invalidate.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
           }
         },
         "security": [
@@ -8384,6 +8518,9 @@
         "name": {
           "type": "string"
         },
+        "originalApplicationID": {
+          "type": "integer"
+        },
         "phoneNumber": {
           "type": "string"
         },
@@ -8404,6 +8541,7 @@
         "calculatedSpeed",
         "deviceActivity",
         "id",
+        "originalApplicationID",
         "userTemplateID"
       ],
       "type": "object"
@@ -9759,34 +9897,6 @@
       ],
       "type": "object"
     },
-    "CustomFieldsCustomFieldModel": {
-      "properties": {
-        "defaultValue": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "label": {
-          "type": "string"
-        },
-        "objectType": {
-          "type": "string"
-        },
-        "required": {
-          "type": "boolean"
-        },
-        "type": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "id",
-        "required",
-        "type"
-      ],
-      "type": "object"
-    },
     "FuelConsumptionModel": {
       "properties": {
         "id": {
@@ -9898,10 +10008,19 @@
     },
     "PublishModel": {
       "properties": {
+        "expires": {
+          "type": "string"
+        },
         "url": {
+          "type": "string"
+        },
+        "urlHash": {
           "type": "string"
         }
       },
+      "required": [
+        "expires"
+      ],
       "type": "object"
     },
     "ReportModel": {
