@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "GpsGate API Documentation",
-    "description": "GpsGate API service",
+    "description": "GpsGate API service.\nAuthentication token can be generated under the REST API Token section of the user edit form.",
     "contact": {
       "email": "support@gpsgate.com"
     },
@@ -10,6 +10,237 @@
   },
   "basePath": "/comGpsGate/api/v.1",
   "paths": {
+    "/settings/site": {
+      "post": {
+        "tags": [
+          "Site"
+        ],
+        "summary": "Add or update a site setting value",
+        "description": "",
+        "operationId": "PostSetting",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SiteSettingsModel"
+            },
+            "name": "setting",
+            "description": "Setting object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/SiteSettingsModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/settings/site/{key:string}": {
+      "get": {
+        "tags": [
+          "Site"
+        ],
+        "summary": "Return a site setting value by key",
+        "description": "",
+        "operationId": "GetSettingByKey",
+        "parameters": [
+          {
+            "name": "key:string",
+            "in": "path",
+            "description": "Key of the Setting you want to work with.",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/SiteSettingsModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/batch/settings/site": {
+      "post": {
+        "tags": [
+          "Site"
+        ],
+        "summary": "Add or update multiple site setting values",
+        "description": "",
+        "operationId": "PostSite",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/SiteSettingsModel"
+              }
+            },
+            "name": "site",
+            "description": "An array of Site.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/SiteSettingsModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/settings/locale": {
+      "post": {
+        "tags": [
+          "Locale"
+        ],
+        "summary": "Set site locale",
+        "description": "",
+        "operationId": "PostLocale",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/LocaleModel"
+            },
+            "name": "locale",
+            "description": "Locale object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/LocaleModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
     "/deploy/status": {
       "get": {
         "tags": [
@@ -286,6 +517,118 @@
             "description": "default",
             "schema": {
               "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/cloudsetup/sms": {
+      "post": {
+        "tags": [
+          "Sms"
+        ],
+        "summary": "Setup a proxy user and an appropriate SMS message provider",
+        "description": "",
+        "operationId": "PostSms",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SetupSmsModel"
+            },
+            "name": "sms",
+            "description": "Sms object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/SetupSmsModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/cloudsetup/passwordreset": {
+      "post": {
+        "tags": [
+          "PasswordReset"
+        ],
+        "summary": "Generate password reset link",
+        "description": "",
+        "operationId": "PostPasswordReset",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PasswordResetModel"
+            },
+            "name": "passwordreset",
+            "description": "PasswordReset object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/PasswordResetModel"
             }
           }
         },
@@ -1760,6 +2103,80 @@
           }
         ]
       },
+      "put": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Update a Device.",
+        "description": "",
+        "operationId": "PutDeviceByDeviceId",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userid:int",
+            "in": "path",
+            "description": "ID of the user.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "deviceid:int",
+            "in": "path",
+            "description": "ID of the device.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DeviceUpdateModel"
+            },
+            "name": "device",
+            "description": "Device object",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "$ref": "#/definitions/DeviceCreateModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Devices"
@@ -2781,64 +3198,6 @@
             "ApiKey": []
           }
         ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/tokens": {
-      "post": {
-        "tags": [
-          "Tokens"
-        ],
-        "summary": "Authorization",
-        "description": "This method is used for getting an ApiKey",
-        "operationId": "GetAPIToken",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/Credentials"
-            },
-            "name": "Credentials",
-            "description": "Credentials for getting the token (ApiKey).",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "$ref": "#/definitions/ApiKey"
-            }
-          }
-        }
       },
       "parameters": []
     },
@@ -6011,110 +6370,22 @@
       },
       "parameters": []
     },
-    "/applications/{applicationid:int}/users/{userid:int}/fuelconsumption": {
-      "get": {
-        "tags": [
-          "FuelConsumption"
-        ],
-        "summary": "List all fuel entries",
-        "description": "",
-        "operationId": "GetFuelConsumption",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "userid:int",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "startTime",
-            "in": "query",
-            "description": "Start time from which to list fuel refills, defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
-            "required": true,
-            "type": "string",
-            "format": "date-time"
-          },
-          {
-            "name": "endTime",
-            "in": "query",
-            "description": "End time to which to list fuel refills, defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
-            "required": true,
-            "type": "string",
-            "format": "date-time"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "$ref": "#/definitions/FuelConsumptionModel"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
+    "/cleanup/site": {
       "post": {
         "tags": [
-          "FuelConsumption"
+          "Cleanup"
         ],
-        "summary": "Add a new fuel entry",
+        "summary": "Add or update Cleanup plugin site settings",
         "description": "",
-        "operationId": "PostFuelConsumption",
+        "operationId": "PostSite",
         "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "userid:int",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "integer"
-          },
           {
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/FuelConsumptionModel"
+              "$ref": "#/definitions/CleanupModel"
             },
-            "name": "fuelconsumption",
-            "description": "FuelConsumption object <br/> RefilledOn parameter is defined by date-time - <a href=\"https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14\"><b>RFC3339</b></a><br/>Sample date-time: <b>1996-12-19T16:39:57-08:00</b> <br/>This represents 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time). Note that this is equivalent to <b>1996-12-20T00:39:57Z</b> in UTC.",
+            "name": "site",
+            "description": "Site object",
             "required": true
           }
         ],
@@ -6143,233 +6414,7 @@
           "default": {
             "description": "default",
             "schema": {
-              "$ref": "#/definitions/FuelConsumptionModel"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/users/{userid:int}/fuelconsumption/{fuelconsumptionid:long}": {
-      "delete": {
-        "tags": [
-          "FuelConsumption"
-        ],
-        "summary": "Delete a fuel entry",
-        "description": "",
-        "operationId": "DeleteFuelConsumptionByFuelConsumptionid",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "userid:int",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "fuelconsumptionid:long",
-            "in": "path",
-            "description": "FuelConsumptionid of the FuelConsumption you want to work with.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "$ref": "#/definitions/FuelConsumptionModel"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/users/{userid:int}/fuelconsumption/{fuelentryid:int}/customfields": {
-      "get": {
-        "tags": [
-          "FuelConsumption"
-        ],
-        "summary": "Returns fuel entry's custom fields.",
-        "description": "",
-        "operationId": "GetCustomFields",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "userid:int",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "fuelentryid:int",
-            "in": "path",
-            "description": "ID of the fuel consumption entry you want to work with.",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/CustomFieldsModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/batch/applications/{applicationid:int}/users/{userid:int}/fuelconsumption/{fuelentryid:int}/customfields": {
-      "post": {
-        "tags": [
-          "FuelConsumption"
-        ],
-        "summary": "Updates custom fields for fuel entry.",
-        "description": "",
-        "operationId": "PostCustomFields",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "userid:int",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "fuelentryid:int",
-            "in": "path",
-            "description": "ID of the fuel consumption entry you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/CustomFieldsModel"
-              }
-            },
-            "name": "customfield",
-            "description": "CustomField object <br/> Name-value pairs of custom fields to be added. Names are case sensitive (i.e. same casing as has been set up in the UI)",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/CustomFieldsModel"
-              }
+              "$ref": "#/definitions/CleanupModel"
             }
           }
         },
@@ -7941,200 +7986,34 @@
         ]
       },
       "parameters": []
-    },
-    "/applications/{applicationid:int}/passengers": {
-      "get": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Returns a list of Passengers.",
-        "description": "",
-        "operationId": "GetPassengers",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "FromIndex",
-            "in": "query",
-            "description": "The starting index of the page (exclusive)",
-            "required": false,
-            "type": "integer",
-            "format": "int64",
-            "default": 0
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "type": "integer",
-            "default": 1000
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "$ref": "#/definitions/PassengerModel"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Adds a Passenger.",
-        "description": "",
-        "operationId": "PostPassenger",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/PassengerModel"
-            },
-            "name": "passenger",
-            "description": "Passenger object",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          },
-          "default": {
-            "description": "default",
-            "schema": {
-              "$ref": "#/definitions/PassengerModel"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
-    },
-    "/applications/{applicationid:int}/passengers/{passengerid:long}": {
-      "delete": {
-        "tags": [
-          "Passenger Manager"
-        ],
-        "summary": "Removes a Passenger",
-        "description": "",
-        "operationId": "DeletePassengerByPassengerid",
-        "parameters": [
-          {
-            "name": "applicationid:int",
-            "in": "path",
-            "description": "ID of the application you want to work with.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "passengerid:long",
-            "in": "path",
-            "description": "Passengerid of the Passenger you want to work with.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
-          },
-          "400": {
-            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-          },
-          "401": {
-            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
-          },
-          "403": {
-            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-          },
-          "404": {
-            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
-          },
-          "500": {
-            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
-          },
-          "503": {
-            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
-          }
-        },
-        "security": [
-          {
-            "ApiKey": []
-          }
-        ]
-      },
-      "parameters": []
     }
   },
   "definitions": {
+    "SiteSettingsModel": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LocaleModel": {
+      "properties": {
+        "countryCode": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeployAction": {
       "type": "string",
       "enum": [
@@ -8286,6 +8165,47 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SetupSmsModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "proxyUsername": {
+          "type": "string"
+        },
+        "proxyUserPassword": {
+          "type": "string"
+        },
+        "smsRoutePhone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "PasswordResetModel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "passwordResetLink": {
+          "type": "string"
+        },
+        "tokenMinutesValidity": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tokenMinutesValidity"
+      ],
       "type": "object"
     },
     "ApplicationModel": {
@@ -9029,6 +8949,9 @@
         "id": {
           "type": "integer"
         },
+        "name": {
+          "type": "string"
+        },
         "position": {
           "$ref": "#/definitions/Position"
         },
@@ -9074,6 +8997,23 @@
       "required": [
         "time"
       ],
+      "type": "object"
+    },
+    "DeviceUpdateModel": {
+      "properties": {
+        "deviceMapperID": {
+          "type": "integer"
+        },
+        "deviceTypeId": {
+          "type": "integer"
+        },
+        "imei": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CommandModel": {
@@ -9237,39 +9177,6 @@
         "updated",
         "userId"
       ],
-      "type": "object"
-    },
-    "TokenModel": {
-      "properties": {
-        "password": {
-          "type": "string"
-        },
-        "token": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Credentials": {
-      "properties": {
-        "password": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ApiKey": {
-      "properties": {
-        "token": {
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "TagModel": {
@@ -9897,38 +9804,60 @@
       ],
       "type": "object"
     },
-    "FuelConsumptionModel": {
+    "CleanupModel": {
       "properties": {
-        "id": {
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CleanupProviderModel"
+          }
+        },
+        "triggerHour": {
           "type": "integer"
         },
-        "refilledOn": {
-          "type": "string"
-        },
-        "userId": {
+        "triggerMinute": {
           "type": "integer"
-        },
-        "volume": {
-          "type": "number"
         }
       },
       "required": [
-        "id",
-        "refilledOn",
-        "userId",
-        "volume"
+        "triggerHour",
+        "triggerMinute"
       ],
       "type": "object"
     },
-    "CustomFieldsModel": {
+    "CleanupProviderModel": {
       "properties": {
-        "name": {
-          "type": "string"
+        "period": {
+          "$ref": "#/definitions/CleanupPeriodModel"
         },
-        "value": {
+        "providerName": {
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CleanupPeriodModel": {
+      "properties": {
+        "day": {
+          "type": "integer"
+        },
+        "keepForever": {
+          "type": "boolean"
+        },
+        "month": {
+          "type": "integer"
+        },
+        "year": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "day",
+        "keepForever",
+        "month",
+        "year"
+      ],
       "type": "object"
     },
     "POICategoryModel": {
@@ -10358,119 +10287,6 @@
         "id"
       ],
       "type": "object"
-    },
-    "LogoutType": {
-      "type": "string",
-      "enum": [
-        "NotLogout",
-        "Device",
-        "ManualByStudent",
-        "ManualByBus",
-        "Automatic",
-        "Dangling",
-        "DoubleLogin"
-      ]
-    },
-    "PassengerModel": {
-      "properties": {
-        "applicationId": {
-          "type": "integer"
-        },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "defaultBusId": {
-          "type": "integer"
-        },
-        "email": {
-          "type": "string"
-        },
-        "firstGuardianEmail": {
-          "type": "string"
-        },
-        "firstGuardianFirstname": {
-          "type": "string"
-        },
-        "firstGuardianLastname": {
-          "type": "string"
-        },
-        "firstGuardianPhone": {
-          "type": "string"
-        },
-        "firstname": {
-          "type": "string"
-        },
-        "id": {
-          "type": "integer"
-        },
-        "lastname": {
-          "type": "string"
-        },
-        "latestLoginBusId": {
-          "type": "integer"
-        },
-        "latestLoginTimestamp": {
-          "type": "string"
-        },
-        "latestLogoutTimestamp": {
-          "type": "string"
-        },
-        "latestLogoutType": {
-          "$ref": "#/definitions/LogoutType"
-        },
-        "passengerIdentifier": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "picture": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string"
-        },
-        "schoolEmail": {
-          "type": "string"
-        },
-        "schoolName": {
-          "type": "string"
-        },
-        "schoolPhone": {
-          "type": "string"
-        },
-        "secondGuardianEmail": {
-          "type": "string"
-        },
-        "secondGuardianFirstname": {
-          "type": "string"
-        },
-        "secondGuardianLastname": {
-          "type": "string"
-        },
-        "secondGuardianPhone": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "streetAddress": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "applicationId",
-        "defaultBusId",
-        "id",
-        "latestLoginBusId",
-        "latestLoginTimestamp",
-        "latestLogoutTimestamp",
-        "latestLogoutType"
-      ],
-      "type": "object"
     }
   },
   "securityDefinitions": {
@@ -10482,7 +10298,19 @@
   },
   "tags": [
     {
+      "name": "Site"
+    },
+    {
+      "name": "Locale"
+    },
+    {
       "name": "Plugins"
+    },
+    {
+      "name": "Sms"
+    },
+    {
+      "name": "PasswordReset"
     },
     {
       "name": "Application"
@@ -10510,10 +10338,6 @@
     },
     {
       "name": "Accumulator"
-    },
-    {
-      "name": "Tokens",
-      "description": "Use this resource to get an ApiKey"
     },
     {
       "name": "Tags"
@@ -10547,7 +10371,7 @@
       "name": "Events"
     },
     {
-      "name": "FuelConsumption"
+      "name": "Cleanup"
     },
     {
       "name": "POI"
@@ -10557,9 +10381,6 @@
     },
     {
       "name": "Report"
-    },
-    {
-      "name": "Passenger Manager"
     }
   ],
   "externalDocs": {
