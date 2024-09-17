@@ -7974,10 +7974,12 @@
           "$ref": "#/definitions/DeployAction"
         },
         "currentStep": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "pluginId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "pluginName": {
           "type": "string"
@@ -7992,7 +7994,8 @@
           "type": "string"
         },
         "totalSteps": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8029,6 +8032,9 @@
         "iconUrl": {
           "type": "string"
         },
+        "isInstallable": {
+          "type": "boolean"
+        },
         "name": {
           "type": "string"
         },
@@ -8055,6 +8061,7 @@
         }
       },
       "required": [
+        "isInstallable",
         "requiresValidSupport"
       ],
       "type": "object"
@@ -8068,7 +8075,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -8116,7 +8124,8 @@
     "ApplicationModel": {
       "properties": {
         "created": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "culture": {
           "type": "string"
@@ -8125,13 +8134,15 @@
           "type": "string"
         },
         "expire": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "expired": {
           "type": "boolean"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "isInitialized": {
           "type": "boolean"
@@ -8140,10 +8151,12 @@
           "type": "string"
         },
         "licensesUsed": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "maxUsers": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "measurement": {
           "type": "string"
@@ -8155,7 +8168,8 @@
           "type": "string"
         },
         "userCount": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8171,10 +8185,12 @@
     "ApplicationCreateModel": {
       "properties": {
         "adminUserId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "applicationTemplateId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "culture": {
           "type": "string"
@@ -8183,16 +8199,19 @@
           "type": "string"
         },
         "expire": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "language": {
           "type": "string"
         },
         "maxUsers": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "measurement": {
           "type": "string"
@@ -8220,16 +8239,19 @@
           "type": "string"
         },
         "expire": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "language": {
           "type": "string"
         },
         "maxUsers": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "measurement": {
           "type": "string"
@@ -8249,13 +8271,15 @@
     "ViewModel": {
       "properties": {
         "applicationID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "matchAllTags": {
           "type": "boolean"
@@ -8310,13 +8334,15 @@
     "UserModel": {
       "properties": {
         "calculatedSpeed": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "description": {
           "type": "string"
         },
         "deviceActivity": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "devices": {
           "type": "array",
@@ -8335,7 +8361,8 @@
           "$ref": "#/definitions/UserIconModel"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "lastTransport": {
           "type": "string"
@@ -8344,7 +8371,8 @@
           "type": "string"
         },
         "originalApplicationID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "phoneNumber": {
           "type": "string"
@@ -8359,7 +8387,8 @@
           "type": "string"
         },
         "userTemplateID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8383,7 +8412,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -8425,7 +8455,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -8443,7 +8474,8 @@
           "type": "string"
         },
         "userTypeId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8455,10 +8487,12 @@
     "Velocity": {
       "properties": {
         "groundSpeed": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "heading": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -8470,13 +8504,16 @@
     "Position": {
       "properties": {
         "altitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "latitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "longitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -8492,7 +8529,8 @@
           "$ref": "#/definitions/Position"
         },
         "uTC": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "valid": {
           "type": "boolean"
@@ -8518,10 +8556,12 @@
     "OneWireBag": {
       "properties": {
         "deviceDefinitionID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "deviceID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "oneWireID": {
           "type": "string"
@@ -8542,10 +8582,12 @@
           "type": "string"
         },
         "created": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "deviceDefinitionID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "devicePassword": {
           "type": "string"
@@ -8563,7 +8605,8 @@
           "type": "boolean"
         },
         "iD": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "iMEI": {
           "type": "string"
@@ -8572,19 +8615,24 @@
           "type": "string"
         },
         "lastPort": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "latitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "longitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "mobileNetworkID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "msgFieldDictionaryID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "mSISDN": {
           "$ref": "#/definitions/MSISDN"
@@ -8603,7 +8651,8 @@
           "type": "string"
         },
         "ownerID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "ownerName": {
           "type": "string"
@@ -8612,25 +8661,30 @@
           "type": "string"
         },
         "profileId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "protocolID": {
           "type": "string"
         },
         "protocolVersionID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "proximity": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "staticIP": {
           "type": "string"
         },
         "staticPort": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "timeStamp": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         }
       },
       "required": [
@@ -8655,13 +8709,16 @@
     "DeviceCreateModel": {
       "properties": {
         "deviceMapperID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "deviceTypeId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "imei": {
           "type": "string"
@@ -8683,10 +8740,12 @@
           "type": "string"
         },
         "iconOffsetX": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "iconOffsetY": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "rotatable": {
           "type": "boolean"
@@ -8711,13 +8770,16 @@
           "$ref": "#/definitions/TrackPoint"
         },
         "totalDistance": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "trackInfoId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8734,13 +8796,16 @@
           "$ref": "#/definitions/Position"
         },
         "serverUtc": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "trackInfoId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "uTC": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "valid": {
           "type": "boolean"
@@ -8769,25 +8834,30 @@
           "$ref": "#/definitions/BoundingBox"
         },
         "count": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "endPosition": {
           "$ref": "#/definitions/Position"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "startPosition": {
           "$ref": "#/definitions/Position"
         },
         "totalDistance": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "updated": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -8802,34 +8872,44 @@
     "BoundingBox": {
       "properties": {
         "maxM": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "maxTime": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "maxX": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "maxY": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "maxZ": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minM": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minTime": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "minX": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minY": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minZ": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -8849,10 +8929,12 @@
     "UserStatusModel": {
       "properties": {
         "deviceActivity": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -8864,7 +8946,8 @@
           "type": "string"
         },
         "uTC": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "variables": {
           "type": "array",
@@ -8890,7 +8973,8 @@
           "type": "string"
         },
         "time": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "type": {
           "type": "string"
@@ -8907,10 +8991,12 @@
     "DeviceUpdateModel": {
       "properties": {
         "deviceMapperID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "deviceTypeId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "imei": {
           "type": "string"
@@ -8923,14 +9009,12 @@
     },
     "CommandModel": {
       "properties": {
-        "aliasID": {
-          "type": "integer"
-        },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "localName": {
           "type": "string"
@@ -8952,7 +9036,6 @@
         }
       },
       "required": [
-        "aliasID",
         "id",
         "outgoing",
         "special"
@@ -8969,11 +9052,15 @@
     },
     "CommandStatusModel": {
       "properties": {
+        "commandId": {
+          "type": "string"
+        },
         "commandName": {
           "type": "string"
         },
         "currentStep": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "customState": {
           "type": "string"
@@ -8982,10 +9069,12 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "lastActivity": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "state": {
           "type": "string"
@@ -8994,7 +9083,8 @@
           "type": "string"
         },
         "totalSteps": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -9019,19 +9109,24 @@
     "AccumulatorModel": {
       "properties": {
         "accumulatorTypeId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "timestamp": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "value": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -9046,7 +9141,8 @@
     "UserTypeModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9060,19 +9156,24 @@
     "ApplicationTrackInfoModel": {
       "properties": {
         "count": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "created": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "updated": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -9087,13 +9188,15 @@
     "TagModel": {
       "properties": {
         "applicationId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9114,7 +9217,8 @@
     "APIModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -9148,7 +9252,8 @@
     "SessionApplicationModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9162,7 +9267,8 @@
     "SessionUserModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9182,7 +9288,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9257,10 +9364,12 @@
     "MessageProviderModel": {
       "properties": {
         "callInterval": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "customLong": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "customString": {
           "type": "string"
@@ -9272,7 +9381,8 @@
           "type": "boolean"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "isStarted": {
           "type": "boolean"
@@ -9287,10 +9397,12 @@
           "type": "string"
         },
         "timeout": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "typeID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "url": {
           "type": "string"
@@ -9314,7 +9426,8 @@
     "MessageProviderTypeModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9337,7 +9450,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9361,10 +9475,12 @@
     "Position2D": {
       "properties": {
         "latitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "longitude": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -9399,7 +9515,8 @@
           "$ref": "#/definitions/Position2D"
         },
         "radius": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -9410,7 +9527,8 @@
     "RouteShape": {
       "properties": {
         "radius": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "vertices": {
           "type": "array",
@@ -9428,16 +9546,20 @@
     "GeofenceBoundingBoxModel": {
       "properties": {
         "maxX": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "maxY": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minX": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         },
         "minY": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -9463,7 +9585,8 @@
           }
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9472,7 +9595,8 @@
           "type": "boolean"
         },
         "priority": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "useInGeocoding": {
           "type": "boolean"
@@ -9510,7 +9634,8 @@
     "EventModel": {
       "properties": {
         "applicationId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "arguments": {
           "type": "array",
@@ -9529,7 +9654,8 @@
           "type": "string"
         },
         "closedTimeStamp": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "comment": {
           "type": "string"
@@ -9538,13 +9664,16 @@
           "$ref": "#/definitions/Position"
         },
         "eventStage": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "expressionEvaluatorId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "ongoing": {
           "type": "boolean"
@@ -9559,7 +9688,8 @@
           "type": "boolean"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -9578,13 +9708,15 @@
     "Argument": {
       "properties": {
         "argumentID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
         },
         "eventID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "sIValue": {
           "type": "string"
@@ -9605,7 +9737,8 @@
     "EventRuleModel": {
       "properties": {
         "applicationID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
@@ -9614,7 +9747,8 @@
           "type": "boolean"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9639,7 +9773,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9656,7 +9791,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9670,13 +9806,15 @@
     "AccumulatorTypeModel": {
       "properties": {
         "applicationId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9691,13 +9829,15 @@
     "ApplicationTemplateModel": {
       "properties": {
         "created": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9712,16 +9852,20 @@
     "FuelConsumptionModel": {
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "refilledOn": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "userId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "volume": {
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
       "required": [
@@ -9755,16 +9899,20 @@
           "$ref": "#/definitions/GeocodingAddressOptions"
         },
         "geocodingTolerance": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "maxZoom": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "minZoom": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9791,7 +9939,8 @@
     "POIModel": {
       "properties": {
         "categoryId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "customFieldsValue": {
           "type": "array",
@@ -9803,7 +9952,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "name": {
           "type": "string"
@@ -9821,7 +9971,8 @@
     "PublishModel": {
       "properties": {
         "expires": {
-          "type": "string"
+          "type": "string",
+          "format": "dateTime"
         },
         "url": {
           "type": "string"
@@ -9838,16 +9989,19 @@
     "ReportModel": {
       "properties": {
         "applicationId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "definitionId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "description": {
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -9860,7 +10014,8 @@
           }
         },
         "reportFormatId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "schedule": {
           "$ref": "#/definitions/ReportScheduleModel"
@@ -9913,7 +10068,8 @@
     "ReportScheduleModel": {
       "properties": {
         "dayOfMonth": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "daysInWeek": {
           "$ref": "#/definitions/DaysInWeekModel"
@@ -9922,13 +10078,15 @@
           "type": "string"
         },
         "hours": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "ignoreSendingBlank": {
           "type": "boolean"
         },
         "minutes": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "recipients": {
           "type": "array",
@@ -9937,13 +10095,15 @@
           }
         },
         "reportFormatId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "scheduleType": {
           "$ref": "#/definitions/ReportScheduleType"
         },
         "seconds": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "transport": {
           "$ref": "#/definitions/ReportDeliveryTransport"
@@ -10066,10 +10226,12 @@
           }
         },
         "reportFormatId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "reportId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "sendEmail": {
           "type": "boolean"
@@ -10085,10 +10247,12 @@
     "RenderingStatusModel": {
       "properties": {
         "currentStep": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "isReady": {
           "type": "boolean"
@@ -10107,16 +10271,20 @@
           }
         },
         "percentage": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "reportFormatId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "reportId": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "steps": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -10136,7 +10304,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -10156,7 +10325,8 @@
           "type": "string"
         },
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         "name": {
           "type": "string"
@@ -10175,31 +10345,17 @@
   "securityDefinitions": {
     "ApiKey": {
       "type": "apiKey",
+      "description": "Authentication with ApiKey",
       "name": "Authorization",
       "in": "header"
     }
   },
   "tags": [
     {
-      "name": "Plugins"
+      "name": "Accumulator"
     },
     {
       "name": "Application"
-    },
-    {
-      "name": "Views"
-    },
-    {
-      "name": "Variables"
-    },
-    {
-      "name": "Users"
-    },
-    {
-      "name": "Tracks"
-    },
-    {
-      "name": "Devices"
     },
     {
       "name": "Commands"
@@ -10208,28 +10364,16 @@
       "name": "CommandStatus"
     },
     {
-      "name": "Accumulator"
+      "name": "Devices"
     },
     {
-      "name": "Tags"
+      "name": "Events"
     },
     {
-      "name": "Session"
-    },
-    {
-      "name": "Roles"
+      "name": "FuelConsumption"
     },
     {
       "name": "Geocoding"
-    },
-    {
-      "name": "MessageProviders"
-    },
-    {
-      "name": "MessageProviderTypes"
-    },
-    {
-      "name": "Geofences"
     },
     {
       "name": "GeofenceGroups"
@@ -10239,10 +10383,16 @@
       "description": "Operations for listing/adding/removing geofence(s) in/to/from a Geofence Groups"
     },
     {
-      "name": "Events"
+      "name": "Geofences"
     },
     {
-      "name": "FuelConsumption"
+      "name": "MessageProviders"
+    },
+    {
+      "name": "MessageProviderTypes"
+    },
+    {
+      "name": "Plugins"
     },
     {
       "name": "POI"
@@ -10252,10 +10402,31 @@
     },
     {
       "name": "Report"
+    },
+    {
+      "name": "Roles"
+    },
+    {
+      "name": "Session"
+    },
+    {
+      "name": "Tags"
+    },
+    {
+      "name": "Tracks"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Variables"
+    },
+    {
+      "name": "Views"
     }
   ],
   "externalDocs": {
-    "Description": "GpsGate API blog post",
-    "Url": "http://www.gpsgate.com"
+    "description": "GpsGate API blog post",
+    "url": "http://www.gpsgate.com"
   }
 }
