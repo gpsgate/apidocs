@@ -1627,8 +1627,7 @@
         "operationId": "PutImageByUserId",
         "consumes": [
           "multipart/form-data",
-          "application/x-www-form-urlencoded",
-          "multipart/form-data"
+          "application/x-www-form-urlencoded"
         ],
         "produces": [
           "image/jpeg"
@@ -1649,8 +1648,8 @@
             "type": "integer"
           },
           {
-            "in": "body",
             "name": "image",
+            "in": "formData",
             "description": "Image file. Add image file to the form-data body of the request. The first added file is taken. Supported content types: image/jpg, image/jpeg, image/gif, image/bmp, image/png - use related image file formats.\nYou can use following curl command to make a request:\ncurl -X PUT \"{HOST_NAME}/comGpsGate/api/v.1/applications/{APPLICATION_ID}/users/images/{USER_ID}\" --form \"data=@{PATH_TO_FILE};type=image/jpeg\" -H \"Authorization: {TOKEN}\"\nReplace the following:\n- {HOST_NAME} with the host name of your server with http/https.\n- {APPLICATION_ID} with the ID of the application.\n- {USER_ID} with the ID of the user.\n- {PATH_TO_FILE} with the local path to the image file you want to upload.\n- {TOKEN} with the authorization token.",
             "required": true,
             "type": "file"
