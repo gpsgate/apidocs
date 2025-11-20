@@ -3055,9 +3055,9 @@
             "default": 1000
           },
           {
-            "name": "TagId",
+            "name": "GroupId",
             "in": "query",
-            "description": "Filter results by a tag",
+            "description": "Filter results by a group",
             "required": false,
             "type": "integer"
           },
@@ -5832,9 +5832,9 @@
             "type": "integer"
           },
           {
-            "name": "UserTagId",
+            "name": "GroupId",
             "in": "query",
-            "description": "The user tag id for which you want to get the events",
+            "description": "The assets group id for which you want to get the events",
             "required": false,
             "type": "integer"
           },
