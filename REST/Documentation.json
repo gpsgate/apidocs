@@ -549,6 +549,31 @@
             "description": "ID of the application you want to work with.",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          },
+          {
+            "name": "InUse",
+            "in": "query",
+            "description": "When true, return only variables that are in use by at least one user.",
+            "required": false,
+            "type": "boolean",
+            "default": false
           }
         ],
         "responses": {
@@ -1084,6 +1109,73 @@
               "items": {
                 "type": "integer",
                 "format": "int64"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/search": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Search users by name, kind (Asset/User), distance within (lat/long + meters), variable filters, and/or custom field filters. Conditions: =, !=, >, <, contains, not-contain.",
+        "description": "",
+        "operationId": "SearchUsers",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UserSearchRequest"
+            },
+            "name": "body",
+            "description": "Filter which objects are returned by specifying: nameFilter, kind (Asset/User), distanceWithin, variableFilters and/or customFieldFilters (each with name, condition, value). Condition values: =, !=, >, <, contains, not-contain.",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/UserModel"
               }
             }
           }
@@ -2514,6 +2606,63 @@
               "items": {
                 "type": "object",
                 "$ref": "#/definitions/UserCustomFieldModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/users/customfields": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Returns a distinct list of custom field names that exist for any user in the application.",
+        "description": "",
+        "operationId": "GetCustomFieldNames",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
           }
@@ -6736,6 +6885,324 @@
       },
       "parameters": []
     },
+    "/applications/{applicationid:int}/maintenance/upcomingservices": {
+      "get": {
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "List upcoming services within a date window",
+        "description": "",
+        "operationId": "GetUpcomingServices",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "upcomingDateFrom",
+            "in": "query",
+            "description": "Start of the upcoming date window (RFC3339 date-time).",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "upcomingDateTo",
+            "in": "query",
+            "description": "End of the upcoming date window (RFC3339 date-time).",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "maintenanceId",
+            "in": "query",
+            "description": "Filter by a specific maintenance definition ID.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/UpcomingMaintenanceModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/maintenance/requiredresources": {
+      "get": {
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "List resources required for upcoming services within a date window",
+        "description": "",
+        "operationId": "GetRequiredResources",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "upcomingDateFrom",
+            "in": "query",
+            "description": "Start of the upcoming date window (RFC3339 date-time).",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "upcomingDateTo",
+            "in": "query",
+            "description": "End of the upcoming date window (RFC3339 date-time).",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/UpcomingMaintenanceRequiredResourceModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/maintenance/nextupcomingservices": {
+      "get": {
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "List next upcoming service per vehicle",
+        "description": "",
+        "operationId": "GetNextUpcomingServices",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/UpcomingMaintenanceModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/applications/{applicationid:int}/maintenance/servicelogs": {
+      "get": {
+        "tags": [
+          "Maintenance"
+        ],
+        "summary": "List historical service logs",
+        "description": "",
+        "operationId": "GetServiceLogs",
+        "parameters": [
+          {
+            "name": "applicationid:int",
+            "in": "path",
+            "description": "ID of the application you want to work with.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "FromIndex",
+            "in": "query",
+            "description": "The starting index of the page (exclusive)",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "type": "integer",
+            "default": 1000
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by maintenance status (0 = NotStarted, 1 = Ongoing, 2 = Submitted, 3 = Closed).",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "finishedDateFrom",
+            "in": "query",
+            "description": "Filter logs finished on or after this date (RFC3339 date-time).",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finishedDateTo",
+            "in": "query",
+            "description": "Filter logs finished on or before this date (RFC3339 date-time).",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "maintenanceId",
+            "in": "query",
+            "description": "Filter by a specific maintenance definition ID.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK: The request has succeeded. The information returned with the response is dependent on the method used in the request."
+          },
+          "400": {
+            "description": "Bad Request: The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
+          },
+          "401": {
+            "description": "Unauthorized: The request requires user authentication. The client MAY repeat the request with a suitable Authorization header field. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials."
+          },
+          "403": {
+            "description": "Forbidden: The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+          },
+          "404": {
+            "description": "Not Found: The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."
+          },
+          "500": {
+            "description": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request."
+          },
+          "503": {
+            "description": "Service Unavailable: The server is currently unable to handle the request due to maintenance of the server or because the service is not running."
+          },
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/MaintenanceLogModel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      },
+      "parameters": []
+    },
     "/applications/{applicationid:int}/poicategories": {
       "get": {
         "tags": [
@@ -9293,6 +9760,105 @@
       ],
       "type": "object"
     },
+    "UserSearchRequest": {
+      "properties": {
+        "customFieldFilters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UserSearchFilter"
+          }
+        },
+        "distanceWithin": {
+          "$ref": "#/definitions/UserSearchDistanceWithinFilter"
+        },
+        "fromIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "nameFilter": {
+          "$ref": "#/definitions/UserSearchNameFilter"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "variableFilters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UserSearchFilter"
+          }
+        }
+      },
+      "required": [
+        "fromIndex",
+        "pageSize"
+      ],
+      "type": "object"
+    },
+    "UserSearchFilter": {
+      "properties": {
+        "condition": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserSearchDistanceWithinFilter": {
+      "properties": {
+        "distanceWithinMeters": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "distanceWithinMeters",
+        "latitude",
+        "longitude"
+      ],
+      "type": "object"
+    },
+    "UserSearchNameFilter": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "proximity": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "proximity"
+      ],
+      "type": "object"
+    },
+    "UserKind": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "User",
+        "Asset"
+      ]
+    },
     "TripInfoModel": {
       "properties": {
         "endTrackPoint": {
@@ -10460,6 +11026,344 @@
       },
       "type": "object"
     },
+    "UpcomingMaintenanceModel": {
+      "properties": {
+        "dueDate": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "iterationNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceLogId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceName": {
+          "type": "string"
+        },
+        "maintenanceSchedules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UpcomingMaintenanceScheduleModel"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "submittedByUserId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "submittedByUserName": {
+          "type": "string"
+        },
+        "tasksCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tasksDone": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tasksSkipped": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vehicleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vehicleName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "iterationNumber",
+        "status",
+        "tasksCount",
+        "tasksDone",
+        "tasksSkipped",
+        "type",
+        "vehicleId"
+      ],
+      "type": "object"
+    },
+    "UpcomingMaintenanceScheduleModel": {
+      "properties": {
+        "accumulatorTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "currentValue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "triggerStatus": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "triggerType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "required": [
+        "accumulatorTypeId",
+        "scheduleId",
+        "triggerStatus",
+        "triggerType",
+        "value"
+      ],
+      "type": "object"
+    },
+    "UpcomingMaintenanceRequiredResourceModel": {
+      "properties": {
+        "cost": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "name": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceTagId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "number",
+          "format": "decimal"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceLogModel": {
+      "properties": {
+        "additionalCosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MaintenanceLogAdditionalCostModel"
+          }
+        },
+        "allowEditClosed": {
+          "type": "boolean"
+        },
+        "closedDate": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "editClosedLimitDays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "finishedDate": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceTaskLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MaintenanceLogTaskModel"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "serviceValueLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MaintenanceLogServiceValueModel"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "submittedByUserId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "submittedByUserName": {
+          "type": "string"
+        },
+        "triggerType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vehicleId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vehicleName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "allowEditClosed",
+        "editClosedLimitDays",
+        "id",
+        "status",
+        "submittedByUserId",
+        "triggerType",
+        "type",
+        "vehicleId"
+      ],
+      "type": "object"
+    },
+    "MaintenanceLogTaskModel": {
+      "properties": {
+        "completeDate": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceLogId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceValue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "completeDate",
+        "id",
+        "maintenanceLogId",
+        "order",
+        "status"
+      ],
+      "type": "object"
+    },
+    "MaintenanceLogServiceValueModel": {
+      "properties": {
+        "accumulatorTypeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "accumulatorTypeMeasureKey": {
+          "type": "string"
+        },
+        "accumulatorTypeName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maintenanceLogId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messageFieldId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "number",
+          "format": "decimal"
+        }
+      },
+      "required": [
+        "accumulatorTypeId",
+        "id",
+        "maintenanceLogId",
+        "messageFieldId"
+      ],
+      "type": "object"
+    },
+    "MaintenanceLogAdditionalCostModel": {
+      "properties": {
+        "cost": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "cost",
+        "id"
+      ],
+      "type": "object"
+    },
     "POICategoryModel": {
       "properties": {
         "color": {
@@ -10976,6 +11880,9 @@
       "name": "MagicLink"
     },
     {
+      "name": "Maintenance"
+    },
+    {
       "name": "MessageProviders"
     },
     {
@@ -11010,6 +11917,7 @@
     }
   ],
   "externalDocs": {
-    "description": "API blog post"
+    "description": "GpsGate API blog post",
+    "url": "http://www.gpsgate.com"
   }
 }
